@@ -17,7 +17,8 @@ const webpackConfig = {
     output: {
         path: path.join(cwd, pathToDist),
         publicPath: `${isDevelopment || isBuildServer ? '' : pathToStaticFileFolder}/`,
-        filename: isDevelopment ? '[name].js' : '[name].[hash:6].js',
+        // filename: isDevelopment ? '[name].js' : '[name].[hash:6].js',
+        filename: 'main.js',
         chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[hash:6].chunk.js',
     },
 
@@ -29,6 +30,6 @@ const webpackConfig = {
     devServer: require('./webpack/setting/dev-server').devServer,
 };
 
-webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+// webpackConfig.plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = webpackConfig;

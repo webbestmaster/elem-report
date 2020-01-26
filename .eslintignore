@@ -10,7 +10,8 @@ node_modules
 # flow
 flow-typed/npm
 
-
+# extract-result
+/extract-result
 
 # example
 
