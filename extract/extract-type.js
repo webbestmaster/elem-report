@@ -3,4 +3,5 @@
 export type ReportDataType = {
     +time: number,
     +guildLevel: number,
+    +altarLevel: number,
 };
