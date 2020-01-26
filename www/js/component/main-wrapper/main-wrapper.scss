@@ -1,0 +1,14 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+
+@import './../../../css/var';
+
+.main_wrapper {
+    background-color: #fff;
+    background-position: center center;
+
+    .paper_wrapper {
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+    }
+}

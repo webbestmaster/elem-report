@@ -1,0 +1,25 @@
+@import './../../../css/var';
+
+$page-transition-time: 1000ms;
+
+.main_content {
+    min-height: 100vh;
+}
+
+.transition_enter {
+    opacity: 0;
+}
+
+.transition_enter_active {
+    opacity: 1;
+    transition: opacity $page-transition-time;
+}
+
+.transition_exit {
+    opacity: 1;
+}
+
+.transition_exit_active {
+    opacity: 0;
+    transition: opacity $page-transition-time;
+}
