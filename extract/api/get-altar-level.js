@@ -13,7 +13,7 @@ export async function getAltarLevel(): Promise<number> {
         return -1;
     }
 
-    const numberString = levelNode.innerHTML.replace(/\D/g, '');
+    const numberString = levelNode.textContent.replace(/\D/g, '');
 
     const level = parseInt(numberString, 10);
 

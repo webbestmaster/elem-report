@@ -13,7 +13,7 @@ export async function getGuildLevel(): Promise<number> {
         return -1;
     }
 
-    const level = parseInt(levelNode.innerHTML, 10);
+    const level = parseInt(levelNode.textContent, 10);
 
     if (!level) {
         console.error('getGuildLevel: can not get level');

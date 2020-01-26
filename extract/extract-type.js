@@ -1,7 +1,13 @@
 // @flow
 
+export type GuildCardDataType = {|
+    +value: number,
+    +level: number,
+|};
+
 export type ReportDataType = {
-    +time: number,
+    +timeStamp: number,
     +guildLevel: number,
     +altarLevel: number,
+    +guildCard: GuildCardDataType,
 };
