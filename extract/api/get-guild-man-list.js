@@ -12,24 +12,23 @@ async function getManDataById(id: number): Promise<NullableType<GuildManDataType
     const profileSelector = 'div[class^=profile]';
 
     const wrapperSelector = newDocument.querySelector(profileSelector) ? profileSelector : profileSelectorDefault;
-
     const nameNode = newDocument.querySelector(`${wrapperSelector} > .c_da`);
     const levelNode = newDocument.querySelector(`${wrapperSelector} > .c_99`);
     const rankNode = newDocument.querySelector(`${wrapperSelector} > .pt2.small > .fl`);
-    const deckNode
+    const deckValueNode
         = newDocument.querySelector(`${wrapperSelector} > .c_orange.mt10.cntr.small`)
         // your profile open with different design
         || newDocument.querySelector('.ml5.mr3.pt2 > .c_da');
     const daysInGameNode = newDocument.querySelector(`${wrapperSelector} > .small.c_99.mt10.ml8.lh16 > .c_da`);
 
-    if (!nameNode || !levelNode || !rankNode || !deckNode || !daysInGameNode) {
+    if (!nameNode || !levelNode || !rankNode || !deckValueNode || !daysInGameNode) {
         console.error(
             'getManDataById: can not get nodes, id:',
             id,
             nameNode,
             levelNode,
             rankNode,
-            deckNode,
+            deckValueNode,
             daysInGameNode
         );
 
@@ -39,7 +38,7 @@ async function getManDataById(id: number): Promise<NullableType<GuildManDataType
     const name = nameNode.textContent.trim();
     const level = parseInt(levelNode.textContent.replace(/\D/g, ''), 10);
     const rank = rankNode.textContent.trim();
-    const deckValue = parseInt(deckNode.textContent.replace(/\D/g, ''), 10);
+    const deckValue = parseInt(deckValueNode.textContent.replace(/\D/g, ''), 10);
     const daysInGame = parseInt(daysInGameNode.textContent.replace(/\D/g, ''), 10);
 
     const manData = {id, name, level, rank, deckValue, daysInGame, warData: null};
@@ -55,14 +54,30 @@ async function getManDataById(id: number): Promise<NullableType<GuildManDataType
 }
 
 async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDataType>> {
-    console.log('getManWarDataById', id);
-    return {deckValue: 0};
+    const newDocument = await getNodeFromUrl(`/gwprofile/${id}/`);
+    const deckValueNode = newDocument.querySelector('.c_orange.mt10.cntr.small');
+
+    if (!deckValueNode) {
+        console.error('getManWarDataById: can not get ');
+        return null;
+    }
+
+    const deckValue = parseInt(deckValueNode.textContent.replace(/\D/g, ''), 10);
+
+    if (!deckValue) {
+        console.error('getManDataById: can not got deckValue, id:', id);
+        console.log(deckValue);
+
+        return null;
+    }
+
+    return {deckValue};
 }
 
 async function getManIdList(): Promise<Array<number>> {
     const nodeList: Array<HTMLElement> = await Promise.all(
-        // [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
-        [1].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
+        [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
+        // [1].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
     );
 
     const idList: Array<number> = [];
@@ -91,7 +106,10 @@ export async function getManList(periodName: PeriodNameType): Promise<Array<Guil
 
     // eslint-disable-next-line no-loops/no-loops
     for (const id of idList) {
+        await waitForTime(1.5e3);
         const manData = await getManDataById(id);
+
+        await waitForTime(1.5e3);
         const warData = periodName === periodNameMap.war ? await getManWarDataById(id) : null;
 
         if (manData) {
@@ -100,7 +118,6 @@ export async function getManList(periodName: PeriodNameType): Promise<Array<Guil
             console.error('getManList: can not get man with id:', id);
         }
 
-        await waitForTime(1e3);
         console.log('getManList progress:', Math.floor(manList.length / idListLength * 100) + '%');
     }
 
