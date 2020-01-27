@@ -2,6 +2,8 @@
 
 /* global setTimeout */
 
+import {isString} from '../../www/js/lib/is';
+
 function getTimezoneOffsetMS(): number {
     const date = new Date();
 
@@ -27,6 +29,18 @@ export function timeToHumanString(time: number): string {
         .toISOString()
         .replace(/\.\d{3}Z$/, '')
         .replace('T', '_');
+}
+
+export function timeToHumanDateString(time: number): string {
+    const dateString = new Date(time - timezoneOffsetMS).toISOString();
+
+    const [datePart] = dateString.split('T');
+
+    if (isString(datePart)) {
+        return datePart;
+    }
+
+    return 'N/A';
 }
 
 export function timeToFileNameString(time: number): string {

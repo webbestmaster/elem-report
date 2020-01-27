@@ -6,7 +6,7 @@ import {type ReportDataType} from '../../../../../extract/extract-type';
 
 import type {NullableType} from '../../../lib/type';
 import {getFileAsJson} from '../../../lib/file';
-import {GuildStatistics} from '../guild-statistics/c-guild-statistics';
+import {GuildStatistics} from '../../../component/guild-statistics/c-guild-statistics';
 
 // import homeStyle from './home.scss';
 
