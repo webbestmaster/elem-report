@@ -1,24 +1,13 @@
 // @flow
 
 import {getNodeFromUrl} from '../util/get-data';
-import type {GuildManDataType, PeriodNameType} from '../extract-type';
+import type {GuildManDataType, GuildManWarDataType, NullableType, PeriodNameType} from '../extract-type';
 import {waitForTime} from '../util/time';
 import {periodNameMap} from '../extract-const';
 
 // eslint-disable-next-line complexity, max-statements
-async function getManDataById(periodName: PeriodNameType, id: number): Promise<GuildManDataType> {
-    const defaultData: GuildManDataType = {
-        id,
-        name: 'N/A',
-        level: -1,
-        rank: 'N/A',
-        deckValue: -1,
-        daysInGame: -1,
-    };
-
-    const urlPartPrefix = periodName === periodNameMap.war ? 'war' : 'user';
-
-    const newDocument = await getNodeFromUrl(`/${urlPartPrefix}/${id}/`);
+async function getManDataById(id: number): Promise<NullableType<GuildManDataType>> {
+    const newDocument = await getNodeFromUrl(`/user/${id}/`);
     const profileSelectorDefault = '#gameBody';
     const profileSelector = 'div[class^=profile]';
 
@@ -34,8 +23,17 @@ async function getManDataById(periodName: PeriodNameType, id: number): Promise<G
     const daysInGameNode = newDocument.querySelector(`${wrapperSelector} > .small.c_99.mt10.ml8.lh16 > .c_da`);
 
     if (!nameNode || !levelNode || !rankNode || !deckNode || !daysInGameNode) {
-        console.error('getManDataById: can not get nodes', nameNode, levelNode, rankNode, deckNode, daysInGameNode);
-        return defaultData;
+        console.error(
+            'getManDataById: can not get nodes, id:',
+            id,
+            nameNode,
+            levelNode,
+            rankNode,
+            deckNode,
+            daysInGameNode
+        );
+
+        return null;
     }
 
     const name = nameNode.textContent.trim();
@@ -44,15 +42,21 @@ async function getManDataById(periodName: PeriodNameType, id: number): Promise<G
     const deckValue = parseInt(deckNode.textContent.replace(/\D/g, ''), 10);
     const daysInGame = parseInt(daysInGameNode.textContent.replace(/\D/g, ''), 10);
 
-    const manData = {id, name, level, rank, deckValue, daysInGame};
+    const manData = {id, name, level, rank, deckValue, daysInGame, warData: null};
 
     if (!name || !level || !rank || !deckValue || !daysInGame) {
-        console.error('getManDataById: can not got data');
+        console.error('getManDataById: can not got data, id:', id);
         console.log(manData);
-        return defaultData;
+
+        return null;
     }
 
     return manData;
+}
+
+async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDataType>> {
+    console.log('getManWarDataById', id);
+    return {deckValue: 0};
 }
 
 async function getManIdList(): Promise<Array<number>> {
@@ -87,9 +91,15 @@ export async function getManList(periodName: PeriodNameType): Promise<Array<Guil
 
     // eslint-disable-next-line no-loops/no-loops
     for (const id of idList) {
-        const manData = await getManDataById(periodName, id);
+        const manData = await getManDataById(id);
+        const warData = periodName === periodNameMap.war ? await getManWarDataById(id) : null;
 
-        manList.push(manData);
+        if (manData) {
+            manList.push({...manData, warData});
+        } else {
+            console.error('getManList: can not get man with id:', id);
+        }
+
         await waitForTime(1e3);
         console.log('getManList progress:', Math.floor(manList.length / idListLength * 100) + '%');
     }

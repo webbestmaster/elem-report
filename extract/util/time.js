@@ -23,8 +23,16 @@ export function waitForTime(timeInMs: number): Promise<void> {
 }
 
 export function timeToHumanString(time: number): string {
-    return new Date(time - getTimezoneOffsetMS())
+    return new Date(time - timezoneOffsetMS)
         .toISOString()
         .replace(/\.\d{3}Z$/, '')
-        .replace('T', ' ');
+        .replace('T', '_');
+}
+
+export function timeToFileNameString(time: number): string {
+    return new Date(time - timezoneOffsetMS)
+        .toISOString()
+        .replace(/:/g, '-')
+        .replace(/\.\d{3}Z$/, '')
+        .replace('T', '-');
 }

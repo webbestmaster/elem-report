@@ -4,6 +4,10 @@ export type NullableType<Type> = Type | null;
 
 export type PeriodNameType = 'usual' | 'war';
 
+export type GuildManWarDataType = {|
+    +deckValue: number,
+|};
+
 export type GuildManDataType = {|
     +id: number,
     +name: string,
@@ -11,6 +15,7 @@ export type GuildManDataType = {|
     +rank: string,
     +deckValue: number,
     +daysInGame: number,
+    +warData: NullableType<GuildManWarDataType>,
 |};
 
 export type GuildCardDataType = {|

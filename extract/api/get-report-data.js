@@ -1,13 +1,12 @@
 // @flow
 
 import type {PeriodNameType, ReportDataType} from '../extract-type';
+import {getTime} from '../util/time';
 
-import {getGuildLevel} from '../api/get-guild-level';
-import {getAltarLevel} from '../api/get-altar-level';
-import {getGuildCardData} from '../api/get-guild-card-data';
-import {getManList} from '../api/get-guild-man-list';
-
-import {getTime} from './time';
+import {getGuildLevel} from './get-guild-level';
+import {getAltarLevel} from './get-altar-level';
+import {getGuildCardData} from './get-guild-card-data';
+import {getManList} from './get-guild-man-list';
 
 export async function getReportData(periodName: PeriodNameType): Promise<ReportDataType> {
     const guildLevel = await getGuildLevel();
