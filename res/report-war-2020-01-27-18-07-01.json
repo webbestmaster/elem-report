@@ -1,0 +1,561 @@
+{
+    "timeStamp": 1580137621370,
+    "guildLevel": 4,
+    "altarLevel": 0,
+    "guildCard": {
+        "value": 18384,
+        "level": 170
+    },
+    "manList": [
+        {
+            "id": 2212890,
+            "name": "Сэнсэй Донбасс",
+            "level": 106,
+            "rank": "Магистр",
+            "deckValue": 113212,
+            "daysInGame": 1494,
+            "warData": {
+                "deckValue": 198470
+            }
+        },
+        {
+            "id": 5424950,
+            "name": "Ведьмак",
+            "level": 107,
+            "rank": "Десница",
+            "deckValue": 131818,
+            "daysInGame": 1013,
+            "warData": {
+                "deckValue": 218937
+            }
+        },
+        {
+            "id": 6796792,
+            "name": "Пушистый Пипец",
+            "level": 110,
+            "rank": "Маршал",
+            "deckValue": 146436,
+            "daysInGame": 786,
+            "warData": {
+                "deckValue": 235017
+            }
+        },
+        {
+            "id": 8299970,
+            "name": "Sashache",
+            "level": 110,
+            "rank": "Маршал",
+            "deckValue": 135234,
+            "daysInGame": 469,
+            "warData": {
+                "deckValue": 222695
+            }
+        },
+        {
+            "id": 5193032,
+            "name": "Mymyi",
+            "level": 106,
+            "rank": "Маршал",
+            "deckValue": 145858,
+            "daysInGame": 1045,
+            "warData": {
+                "deckValue": 234381
+            }
+        },
+        {
+            "id": 7161263,
+            "name": "Mendax",
+            "level": 106,
+            "rank": "Маршал",
+            "deckValue": 119250,
+            "daysInGame": 726,
+            "warData": {
+                "deckValue": 205112
+            }
+        },
+        {
+            "id": 2907842,
+            "name": "Dame Sorciere",
+            "level": 107,
+            "rank": "Маршал",
+            "deckValue": 111467,
+            "daysInGame": 1369,
+            "warData": {
+                "deckValue": 196551
+            }
+        },
+        {
+            "id": 5523911,
+            "name": "Roader",
+            "level": 102,
+            "rank": "Маршал",
+            "deckValue": 118297,
+            "daysInGame": 998,
+            "warData": {
+                "deckValue": 204064
+            }
+        },
+        {
+            "id": 5026444,
+            "name": "Призрачная Встречная",
+            "level": 104,
+            "rank": "Маршал",
+            "deckValue": 115062,
+            "daysInGame": 1072,
+            "warData": {
+                "deckValue": 200505
+            }
+        },
+        {
+            "id": 7841428,
+            "name": "Melysta",
+            "level": 107,
+            "rank": "Маршал",
+            "deckValue": 130189,
+            "daysInGame": 588,
+            "warData": {
+                "deckValue": 217145
+            }
+        },
+        {
+            "id": 5806208,
+            "name": "Эска",
+            "level": 101,
+            "rank": "Маршал",
+            "deckValue": 120577,
+            "daysInGame": 949,
+            "warData": {
+                "deckValue": 206572
+            }
+        },
+        {
+            "id": 7406845,
+            "name": "Дерзкая Козявка",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 123580,
+            "daysInGame": 683,
+            "warData": {
+                "deckValue": 209875
+            }
+        },
+        {
+            "id": 712267,
+            "name": "Брайт",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 115433,
+            "daysInGame": 1796,
+            "warData": {
+                "deckValue": 200913
+            }
+        },
+        {
+            "id": 9410071,
+            "name": "Diana I",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 116009,
+            "daysInGame": 194,
+            "warData": {
+                "deckValue": 193186
+            }
+        },
+        {
+            "id": 6892502,
+            "name": "Aveira",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 136736,
+            "daysInGame": 772,
+            "warData": {
+                "deckValue": 224347
+            }
+        },
+        {
+            "id": 8977964,
+            "name": "Ahad",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 108296,
+            "daysInGame": 308,
+            "warData": {
+                "deckValue": 185087
+            }
+        },
+        {
+            "id": 7522876,
+            "name": "Illyuziya Obmana",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 137745,
+            "daysInGame": 660,
+            "warData": {
+                "deckValue": 225457
+            }
+        },
+        {
+            "id": 4699347,
+            "name": "Gnom Stalker",
+            "level": 109,
+            "rank": "Архимаг",
+            "deckValue": 112849,
+            "daysInGame": 1111,
+            "warData": {
+                "deckValue": 198071
+            }
+        },
+        {
+            "id": 7075142,
+            "name": "Граммафон",
+            "level": 104,
+            "rank": "Архимаг",
+            "deckValue": 115231,
+            "daysInGame": 746,
+            "warData": {
+                "deckValue": 200691
+            }
+        },
+        {
+            "id": 8168173,
+            "name": "Ильтра",
+            "level": 106,
+            "rank": "Архимаг",
+            "deckValue": 113893,
+            "daysInGame": 510,
+            "warData": {
+                "deckValue": 199219
+            }
+        },
+        {
+            "id": 1425335,
+            "name": "Reyni",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 109689,
+            "daysInGame": 1665,
+            "warData": {
+                "deckValue": 194595
+            }
+        },
+        {
+            "id": 5284898,
+            "name": "My Friend",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 117099,
+            "daysInGame": 1030,
+            "warData": {
+                "deckValue": 202746
+            }
+        },
+        {
+            "id": 5579127,
+            "name": "Электронка",
+            "level": 106,
+            "rank": "Архимаг",
+            "deckValue": 117275,
+            "daysInGame": 992,
+            "warData": {
+                "deckValue": 202940
+            }
+        },
+        {
+            "id": 7466735,
+            "name": "Brawos",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 110600,
+            "daysInGame": 672,
+            "warData": {
+                "deckValue": 195597
+            }
+        },
+        {
+            "id": 3291527,
+            "name": "Ушлый",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 122936,
+            "daysInGame": 1298,
+            "warData": {
+                "deckValue": 202567
+            }
+        },
+        {
+            "id": 7380853,
+            "name": "Democrack",
+            "level": 100,
+            "rank": "Архимаг",
+            "deckValue": 107999,
+            "daysInGame": 688,
+            "warData": {
+                "deckValue": 192736
+            }
+        },
+        {
+            "id": 6781885,
+            "name": "Aleksml",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 112580,
+            "daysInGame": 790,
+            "warData": {
+                "deckValue": 197775
+            }
+        },
+        {
+            "id": 7303030,
+            "name": "Paradise Lost",
+            "level": 104,
+            "rank": "Архимаг",
+            "deckValue": 110615,
+            "daysInGame": 697,
+            "warData": {
+                "deckValue": 195614
+            }
+        },
+        {
+            "id": 7394620,
+            "name": "Orcinus",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 114508,
+            "daysInGame": 686,
+            "warData": {
+                "deckValue": 193296
+            }
+        },
+        {
+            "id": 186846,
+            "name": "Zhulik",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 113518,
+            "daysInGame": 1861,
+            "warData": {
+                "deckValue": 198807
+            }
+        },
+        {
+            "id": 2867439,
+            "name": "Darv",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 139151,
+            "daysInGame": 1377,
+            "warData": {
+                "deckValue": 227003
+            }
+        },
+        {
+            "id": 6556497,
+            "name": "Real Man",
+            "level": 98,
+            "rank": "Архимаг",
+            "deckValue": 104673,
+            "daysInGame": 830,
+            "warData": {
+                "deckValue": 189077
+            }
+        },
+        {
+            "id": 8578633,
+            "name": "Mikefire",
+            "level": 100,
+            "rank": "Архимаг",
+            "deckValue": 117660,
+            "daysInGame": 404,
+            "warData": {
+                "deckValue": 203363
+            }
+        },
+        {
+            "id": 8649436,
+            "name": "Пантера Черная",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 121032,
+            "daysInGame": 385,
+            "warData": {
+                "deckValue": 207072
+            }
+        },
+        {
+            "id": 4723045,
+            "name": "Black Rekits",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 110820,
+            "daysInGame": 1108,
+            "warData": {
+                "deckValue": 195839
+            }
+        },
+        {
+            "id": 7162583,
+            "name": "Маленькая Проказница",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 110902,
+            "daysInGame": 725,
+            "warData": {
+                "deckValue": 195929
+            }
+        },
+        {
+            "id": 8276035,
+            "name": "Enotru",
+            "level": 94,
+            "rank": "Архимаг",
+            "deckValue": 118610,
+            "daysInGame": 475,
+            "warData": {
+                "deckValue": 204408
+            }
+        },
+        {
+            "id": 2407689,
+            "name": "Miracle",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 131680,
+            "daysInGame": 1461,
+            "warData": {
+                "deckValue": 218785
+            }
+        },
+        {
+            "id": 6744113,
+            "name": "Ne Tvoya",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 111058,
+            "daysInGame": 798,
+            "warData": {
+                "deckValue": 196101
+            }
+        },
+        {
+            "id": 3752445,
+            "name": "Shining Valkyrie",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 115638,
+            "daysInGame": 1247,
+            "warData": {
+                "deckValue": 201139
+            }
+        },
+        {
+            "id": 1024230,
+            "name": "Силиг",
+            "level": 101,
+            "rank": "Архимаг",
+            "deckValue": 108063,
+            "daysInGame": 1745,
+            "warData": {
+                "deckValue": 168606
+            }
+        },
+        {
+            "id": 1516716,
+            "name": "Охотник За Солнцем",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 112731,
+            "daysInGame": 1647,
+            "warData": {
+                "deckValue": 197941
+            }
+        },
+        {
+            "id": 475333,
+            "name": "Молъфар",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 120416,
+            "daysInGame": 1831,
+            "warData": {
+                "deckValue": 206395
+            }
+        },
+        {
+            "id": 396936,
+            "name": "Юлька Мулька",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 103372,
+            "daysInGame": 1840,
+            "warData": {
+                "deckValue": 163446
+            }
+        },
+        {
+            "id": 7170157,
+            "name": "Дерзкая Атаманка",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 112017,
+            "daysInGame": 724,
+            "warData": {
+                "deckValue": 197156
+            }
+        },
+        {
+            "id": 6925348,
+            "name": "Volopas",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 114412,
+            "daysInGame": 768,
+            "warData": {
+                "deckValue": 192712
+            }
+        },
+        {
+            "id": 2300932,
+            "name": "Пипец Дерзкая",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 106257,
+            "daysInGame": 1479,
+            "warData": {
+                "deckValue": 183741
+            }
+        },
+        {
+            "id": 7819260,
+            "name": "Markiza Angeloff",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 114825,
+            "daysInGame": 593,
+            "warData": {
+                "deckValue": 191347
+            }
+        },
+        {
+            "id": 4723379,
+            "name": "Всёпожрал",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 96240,
+            "daysInGame": 1108,
+            "warData": {
+                "deckValue": 175959
+            }
+        },
+        {
+            "id": 861651,
+            "name": "Темный Лис",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 123938,
+            "daysInGame": 1772,
+            "warData": {
+                "deckValue": 180739
+            }
+        }
+    ]
+}

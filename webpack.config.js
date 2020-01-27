@@ -12,13 +12,13 @@ const {
 } = require('./webpack/config');
 
 const webpackConfig = {
-    // entry: ['./www/css/root.scss', './www/js/root.js'],
-    entry: ['./extract/extract-war.js'],
+    entry: ['./www/css/root.scss', './www/js/root.js'],
+    // entry: ['./extract/extract-war.js'],
     output: {
         path: path.join(cwd, pathToDist),
         publicPath: `${isDevelopment || isBuildServer ? '' : pathToStaticFileFolder}/`,
-        // filename: isDevelopment ? '[name].js' : '[name].[hash:6].js',
-        filename: 'main.js',
+        filename: isDevelopment ? '[name].js' : '[name].[hash:6].js',
+        // filename: 'main.js',
         chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[hash:6].chunk.js',
     },
 
