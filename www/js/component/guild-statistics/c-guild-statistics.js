@@ -10,6 +10,7 @@ import {
     getAllDeckValue,
     getAverageDeckValue,
     getLeaveMemberList,
+    getManById,
     getNewMemberList,
     intWithSpaces,
 } from './guild-statistics-helper';
@@ -80,6 +81,37 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         );
     }
 
+    renderMemberListItem = (man: GuildManDataType): Node => {
+        const {before, after} = this.getReport();
+
+        const manAfter = getManById(man.id, after);
+        const manBefore = getManById(man.id, before) || manAfter;
+
+        if (!manAfter || !manBefore) {
+            console.error('renderMemberListItem: manAfter and manBefore is not define');
+            return null;
+        }
+
+        return (
+            <p key={man.id}>
+                <a href={'/user/' + manAfter.id}>{manAfter.name}</a>
+                <span> - [{manAfter.level}]</span>
+                <span>
+                    сила: {manAfter.deckValue} [{manAfter.deckValue - manBefore.deckValue}]
+                </span>
+                <span>
+                    {manAfter.rank}, в гильдии {manAfter.daysInGame}
+                </span>
+            </p>
+        );
+    };
+
+    renderMemberList(): Node {
+        const {before, after} = this.getReport();
+
+        return <div>{after.manList.map(this.renderMemberListItem)}</div>;
+    }
+
     render(): Node {
         const {before, after} = this.getReport();
 
@@ -102,6 +134,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
                 </p>
                 {this.renderAverageDeckValue()}
                 {this.renderManDelta()}
+                {this.renderMemberList()}
             </>
         );
     }

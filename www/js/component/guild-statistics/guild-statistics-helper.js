@@ -59,3 +59,7 @@ export function getLeaveMemberList(before: ReportDataType, after: ReportDataType
 
     return leaveMemberList;
 }
+
+export function getManById(manId: number, report: ReportDataType): GuildManDataType | void {
+    return report.manList.find((man: GuildManDataType): boolean => man.id === manId);
+}
