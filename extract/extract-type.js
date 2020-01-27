@@ -1,5 +1,9 @@
 // @flow
 
+export type NullableType<Type> = Type | null;
+
+export type PeriodNameType = 'usual' | 'war';
+
 export type GuildManDataType = {|
     +id: number,
     +name: string,
@@ -14,10 +18,10 @@ export type GuildCardDataType = {|
     +level: number,
 |};
 
-export type ReportDataType = {
+export type ReportDataType = {|
     +timeStamp: number,
-    +guildLevel: number,
-    +altarLevel: number,
-    +guildCard: GuildCardDataType,
+    +guildLevel: NullableType<number>,
+    +altarLevel: NullableType<number>,
+    +guildCard: NullableType<GuildCardDataType>,
     +manList: Array<GuildManDataType>,
-};
+|};

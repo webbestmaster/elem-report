@@ -1,11 +1,12 @@
 // @flow
 
 import {getNodeFromUrl} from '../util/get-data';
-import type {GuildManDataType} from '../extract-type';
+import type {GuildManDataType, PeriodNameType} from '../extract-type';
 import {waitForTime} from '../util/time';
+import {periodNameMap} from '../extract-const';
 
 // eslint-disable-next-line complexity, max-statements
-async function getManDataById(id: number): Promise<GuildManDataType> {
+async function getManDataById(periodName: PeriodNameType, id: number): Promise<GuildManDataType> {
     const defaultData: GuildManDataType = {
         id,
         name: 'N/A',
@@ -15,7 +16,9 @@ async function getManDataById(id: number): Promise<GuildManDataType> {
         daysInGame: -1,
     };
 
-    const newDocument = await getNodeFromUrl(`/user/${id}/`);
+    const urlPartPrefix = periodName === periodNameMap.war ? 'war' : 'user';
+
+    const newDocument = await getNodeFromUrl(`/${urlPartPrefix}/${id}/`);
     const profileSelectorDefault = '#gameBody';
     const profileSelector = 'div[class^=profile]';
 
@@ -54,7 +57,8 @@ async function getManDataById(id: number): Promise<GuildManDataType> {
 
 async function getManIdList(): Promise<Array<number>> {
     const nodeList: Array<HTMLElement> = await Promise.all(
-        [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
+        // [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
+        [1].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
     );
 
     const idList: Array<number> = [];
@@ -73,7 +77,7 @@ async function getManIdList(): Promise<Array<number>> {
     return idList;
 }
 
-export async function getManList(): Promise<Array<GuildManDataType>> {
+export async function getManList(periodName: PeriodNameType): Promise<Array<GuildManDataType>> {
     const idList = await getManIdList();
     const idListLength = idList.length;
 
@@ -83,7 +87,7 @@ export async function getManList(): Promise<Array<GuildManDataType>> {
 
     // eslint-disable-next-line no-loops/no-loops
     for (const id of idList) {
-        const manData = await getManDataById(id);
+        const manData = await getManDataById(periodName, id);
 
         manList.push(manData);
         await waitForTime(1e3);

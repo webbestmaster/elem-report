@@ -101,7 +101,7 @@
                 a = n.asyncIterator || '@@asyncIterator',
                 i = n.toStringTag || '@@toStringTag';
             function c(t, e, r, n) {
-                var o = e && e.prototype instanceof l ? e : l,
+                var o = e && e.prototype instanceof s ? e : s,
                     a = Object.create(o.prototype),
                     i = new L(n || []);
                 return (
@@ -118,7 +118,7 @@
                                 if (i) {
                                     var c = x(i, r);
                                     if (c) {
-                                        if (c === s) continue;
+                                        if (c === l) continue;
                                         return c;
                                     }
                                 }
@@ -128,12 +128,12 @@
                                     r.dispatchException(r.arg);
                                 } else 'return' === r.method && r.abrupt('return', r.arg);
                                 n = 'executing';
-                                var l = u(t, e, r);
-                                if ('normal' === l.type) {
-                                    if (((n = r.done ? 'completed' : 'suspendedYield'), l.arg === s)) continue;
-                                    return {value: l.arg, done: r.done};
+                                var s = u(t, e, r);
+                                if ('normal' === s.type) {
+                                    if (((n = r.done ? 'completed' : 'suspendedYield'), s.arg === l)) continue;
+                                    return {value: s.arg, done: r.done};
                                 }
-                                'throw' === l.type && ((n = 'completed'), (r.method = 'throw'), (r.arg = l.arg));
+                                'throw' === s.type && ((n = 'completed'), (r.method = 'throw'), (r.arg = s.arg));
                             }
                         };
                     })(t, r, i)),
@@ -148,18 +148,18 @@
                 }
             }
             t.wrap = c;
-            var s = {};
-            function l() {}
+            var l = {};
+            function s() {}
             function f() {}
             function p() {}
             var h = {};
             h[o] = function() {
                 return this;
             };
-            var v = Object.getPrototypeOf,
-                d = v && v(v(k([])));
-            d && d !== e && r.call(d, o) && (h = d);
-            var y = (p.prototype = l.prototype = Object.create(h));
+            var d = Object.getPrototypeOf,
+                v = d && d(d(k([])));
+            v && v !== e && r.call(v, o) && (h = v);
+            var y = (p.prototype = s.prototype = Object.create(h));
             function g(t) {
                 ['next', 'throw', 'return'].forEach(function(e) {
                     t[e] = function(t) {
@@ -175,10 +175,10 @@
                             !(function e(n, o, a, i) {
                                 var c = u(t[n], t, o);
                                 if ('throw' !== c.type) {
-                                    var s = c.arg,
-                                        l = s.value;
-                                    return l && 'object' == typeof l && r.call(l, '__await')
-                                        ? Promise.resolve(l.__await).then(
+                                    var l = c.arg,
+                                        s = l.value;
+                                    return s && 'object' == typeof s && r.call(s, '__await')
+                                        ? Promise.resolve(s.__await).then(
                                               function(t) {
                                                   e('next', t, a, i);
                                               },
@@ -186,9 +186,9 @@
                                                   e('throw', t, a, i);
                                               },
                                           )
-                                        : Promise.resolve(l).then(
+                                        : Promise.resolve(s).then(
                                               function(t) {
-                                                  (s.value = t), a(s);
+                                                  (l.value = t), a(l);
                                               },
                                               function(t) {
                                                   return e('throw', t, a, i);
@@ -210,13 +210,13 @@
                             t.iterator.return &&
                             ((e.method = 'return'), (e.arg = void 0), x(t, e), 'throw' === e.method)
                         )
-                            return s;
+                            return l;
                         (e.method = 'throw'), (e.arg = new TypeError("The iterator does not provide a 'throw' method"));
                     }
-                    return s;
+                    return l;
                 }
                 var n = u(r, t.iterator, e.arg);
-                if ('throw' === n.type) return (e.method = 'throw'), (e.arg = n.arg), (e.delegate = null), s;
+                if ('throw' === n.type) return (e.method = 'throw'), (e.arg = n.arg), (e.delegate = null), l;
                 var o = n.arg;
                 return o
                     ? o.done
@@ -224,12 +224,12 @@
                           (e.next = t.nextLoc),
                           'return' !== e.method && ((e.method = 'next'), (e.arg = void 0)),
                           (e.delegate = null),
-                          s)
+                          l)
                         : o
                     : ((e.method = 'throw'),
                       (e.arg = new TypeError('iterator result is not an object')),
                       (e.delegate = null),
-                      s);
+                      l);
             }
             function w(t) {
                 var e = {tryLoc: t[0]};
@@ -386,7 +386,7 @@
                         return (
                             (i.type = t),
                             (i.arg = e),
-                            a ? ((this.method = 'next'), (this.next = a.finallyLoc), s) : this.complete(i)
+                            a ? ((this.method = 'next'), (this.next = a.finallyLoc), l) : this.complete(i)
                         );
                     },
                     complete: function(t, e) {
@@ -397,13 +397,13 @@
                                 : 'return' === t.type
                                 ? ((this.rval = this.arg = t.arg), (this.method = 'return'), (this.next = 'end'))
                                 : 'normal' === t.type && e && (this.next = e),
-                            s
+                            l
                         );
                     },
                     finish: function(t) {
                         for (var e = this.tryEntries.length - 1; e >= 0; --e) {
                             var r = this.tryEntries[e];
-                            if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), b(r), s;
+                            if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), b(r), l;
                         }
                     },
                     catch: function(t) {
@@ -424,7 +424,7 @@
                         return (
                             (this.delegate = {iterator: k(t), resultName: e, nextLoc: r}),
                             'next' === this.method && (this.arg = void 0),
-                            s
+                            l
                         );
                     },
                 }),
@@ -479,12 +479,14 @@
         var n = r(0),
             o = r.n(n),
             a = r(1),
-            i = r.n(a);
-        function c(t) {
-            return u.apply(this, arguments);
+            i = r.n(a),
+            c = 'usual',
+            u = 'war';
+        function l(t) {
+            return s.apply(this, arguments);
         }
-        function u() {
-            return (u = i()(
+        function s() {
+            return (s = i()(
                 o.a.mark(function t(e) {
                     var r, n, a;
                     return o.a.wrap(function(t) {
@@ -508,32 +510,32 @@
                 }),
             )).apply(this, arguments);
         }
-        function s() {
-            return l.apply(this, arguments);
+        function f() {
+            return p.apply(this, arguments);
         }
-        function l() {
-            return (l = i()(
+        function p() {
+            return (p = i()(
                 o.a.mark(function t() {
                     var e, r, n;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
                                 case 0:
-                                    return (t.next = 2), c('/ratings/guild/war/');
+                                    return (t.next = 2), l('/ratings/guild/war/');
                                 case 2:
                                     if (((e = t.sent), (r = e.querySelector('.num.c_orange')))) {
                                         t.next = 7;
                                         break;
                                     }
                                     return (
-                                        console.error('getGuildLevel: can not get levelNode'), t.abrupt('return', -1)
+                                        console.error('getGuildLevel: can not get levelNode'), t.abrupt('return', null)
                                     );
                                 case 7:
                                     if ((n = parseInt(r.textContent, 10))) {
                                         t.next = 11;
                                         break;
                                     }
-                                    return console.error('getGuildLevel: can not get level'), t.abrupt('return', -1);
+                                    return console.error('getGuildLevel: can not get level'), t.abrupt('return', null);
                                 case 11:
                                     return t.abrupt('return', n);
                                 case 12:
@@ -544,44 +546,32 @@
                 }),
             )).apply(this, arguments);
         }
-        function f() {
-            return 60 * new Date().getTimezoneOffset() * 1e3;
-        }
-        var p = f();
         function h() {
-            return new Date().getTime() + p;
-        }
-        function v(t) {
-            return new Promise(function(e) {
-                setTimeout(e, t);
-            });
+            return d.apply(this, arguments);
         }
         function d() {
-            return y.apply(this, arguments);
-        }
-        function y() {
-            return (y = i()(
+            return (d = i()(
                 o.a.mark(function t() {
                     var e, r, n, a;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
                                 case 0:
-                                    return (t.next = 2), c('/guild/graids/tweens/');
+                                    return (t.next = 2), l('/guild/graids/tweens/');
                                 case 2:
                                     if (((e = t.sent), (r = e.querySelector('.fttl.green.mt5.mb10 .lf .rt')))) {
                                         t.next = 7;
                                         break;
                                     }
                                     return (
-                                        console.error('getAltarLevel: can not get levelNode'), t.abrupt('return', -1)
+                                        console.error('getAltarLevel: can not get levelNode'), t.abrupt('return', null)
                                     );
                                 case 7:
                                     if (((n = r.textContent.replace(/\D/g, '')), (a = parseInt(n, 10)))) {
                                         t.next = 12;
                                         break;
                                     }
-                                    return console.error('getAltarLevel: can not get level'), t.abrupt('return', -1);
+                                    return console.error('getAltarLevel: can not get level'), t.abrupt('return', null);
                                 case 12:
                                     return t.abrupt('return', a - 1);
                                 case 13:
@@ -592,25 +582,25 @@
                 }),
             )).apply(this, arguments);
         }
-        var g = r(2),
-            m = r.n(g);
-        function x() {
-            return w.apply(this, arguments);
+        var v = r(2),
+            y = r.n(v);
+        function g() {
+            return m.apply(this, arguments);
         }
-        function w() {
-            return (w = i()(
+        function m() {
+            return (m = i()(
                 o.a.mark(function t() {
-                    var e, r, n, a, i, u, s, l, f;
+                    var e, r, n, a, i, c, u, s, f;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
                                 case 0:
-                                    return (t.next = 2), c('/guild/card/');
+                                    return (t.next = 2), l('/guild/card/');
                                 case 2:
                                     if (
                                         ((e = t.sent),
                                         (r = e.querySelectorAll('.cimp.mt10.c_cc .wr1 .wr2 .pt5.small')),
-                                        (n = m()(r, 2)),
+                                        (n = y()(r, 2)),
                                         (a = n[0]),
                                         (i = n[1]),
                                         a && i)
@@ -620,25 +610,25 @@
                                     }
                                     return (
                                         console.error('getGuildCardData: can not get valueNode or levelNode'),
-                                        t.abrupt('return', {value: -1, level: -1})
+                                        t.abrupt('return', null)
                                     );
                                 case 7:
                                     if (
-                                        ((u = a.textContent.replace(/\D/g, '')),
-                                        (s = parseInt(u, 10)),
-                                        (l = i.textContent.replace(/\D/g, '')),
-                                        (f = parseInt(l, 10)),
-                                        s && f)
+                                        ((c = a.textContent.replace(/\D/g, '')),
+                                        (u = parseInt(c, 10)),
+                                        (s = i.textContent.replace(/\D/g, '')),
+                                        (f = parseInt(s, 10)),
+                                        u && f)
                                     ) {
                                         t.next = 14;
                                         break;
                                     }
                                     return (
                                         console.error('getGuildCardData: can not get value or level'),
-                                        t.abrupt('return', {value: -1, level: -1})
+                                        t.abrupt('return', null)
                                     );
                                 case 14:
-                                    return t.abrupt('return', {value: s, level: f});
+                                    return t.abrupt('return', {value: u, level: f});
                                 case 15:
                                 case 'end':
                                     return t.stop();
@@ -647,74 +637,87 @@
                 }),
             )).apply(this, arguments);
         }
-        function b(t) {
-            return L.apply(this, arguments);
+        function x() {
+            return 60 * new Date().getTimezoneOffset() * 1e3;
         }
-        function L() {
-            return (L = i()(
-                o.a.mark(function t(e) {
-                    var r, n, a, i, u, s, l, f, p, h, v, d, y, g;
+        var w = x();
+        function b() {
+            return new Date().getTime() + w;
+        }
+        function L(t) {
+            return new Promise(function(e) {
+                setTimeout(e, t);
+            });
+        }
+        function k(t, e) {
+            return _.apply(this, arguments);
+        }
+        function _() {
+            return (_ = i()(
+                o.a.mark(function t(e, r) {
+                    var n, a, i, c, s, f, p, h, d, v, y, g, m, x, w;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
                                 case 0:
                                     return (
-                                        (r = {
-                                            id: e,
+                                        (n = {
+                                            id: r,
                                             name: 'N/A',
                                             level: -1,
                                             rank: 'N/A',
                                             deckValue: -1,
                                             daysInGame: -1,
                                         }),
-                                        (t.next = 3),
-                                        c('/user/'.concat(e, '/'))
+                                        (a = e === u ? 'war' : 'user'),
+                                        (t.next = 4),
+                                        l('/'.concat(a, '/').concat(r, '/'))
                                     );
-                                case 3:
+                                case 4:
                                     if (
-                                        ((n = t.sent),
+                                        ((i = t.sent),
                                         '#gameBody',
                                         'div[class^=profile]',
-                                        (a = n.querySelector('div[class^=profile]')
+                                        (c = i.querySelector('div[class^=profile]')
                                             ? 'div[class^=profile]'
                                             : '#gameBody'),
-                                        (i = n.querySelector(''.concat(a, ' > .c_da'))),
-                                        (u = n.querySelector(''.concat(a, ' > .c_99'))),
-                                        (s = n.querySelector(''.concat(a, ' > .pt2.small > .fl'))),
-                                        (l =
-                                            n.querySelector(''.concat(a, ' > .c_orange.mt10.cntr.small')) ||
-                                            n.querySelector('.ml5.mr3.pt2 > .c_da')),
-                                        (f = n.querySelector(''.concat(a, ' > .small.c_99.mt10.ml8.lh16 > .c_da'))),
-                                        i && u && s && l && f)
+                                        (s = i.querySelector(''.concat(c, ' > .c_da'))),
+                                        (f = i.querySelector(''.concat(c, ' > .c_99'))),
+                                        (p = i.querySelector(''.concat(c, ' > .pt2.small > .fl'))),
+                                        (h =
+                                            i.querySelector(''.concat(c, ' > .c_orange.mt10.cntr.small')) ||
+                                            i.querySelector('.ml5.mr3.pt2 > .c_da')),
+                                        (d = i.querySelector(''.concat(c, ' > .small.c_99.mt10.ml8.lh16 > .c_da'))),
+                                        s && f && p && h && d)
                                     ) {
-                                        t.next = 15;
+                                        t.next = 16;
                                         break;
                                     }
                                     return (
-                                        console.error('getManDataById: can not get nodes', i, u, s, l, f),
-                                        t.abrupt('return', r)
+                                        console.error('getManDataById: can not get nodes', s, f, p, h, d),
+                                        t.abrupt('return', n)
                                     );
-                                case 15:
+                                case 16:
                                     if (
-                                        ((p = i.textContent.trim()),
-                                        (h = parseInt(u.textContent.replace(/\D/g, ''), 10)),
-                                        (v = s.textContent.trim()),
-                                        (d = parseInt(l.textContent.replace(/\D/g, ''), 10)),
+                                        ((v = s.textContent.trim()),
                                         (y = parseInt(f.textContent.replace(/\D/g, ''), 10)),
-                                        (g = {id: e, name: p, level: h, rank: v, deckValue: d, daysInGame: y}),
-                                        p && h && v && d && y)
+                                        (g = p.textContent.trim()),
+                                        (m = parseInt(h.textContent.replace(/\D/g, ''), 10)),
+                                        (x = parseInt(d.textContent.replace(/\D/g, ''), 10)),
+                                        (w = {id: r, name: v, level: y, rank: g, deckValue: m, daysInGame: x}),
+                                        v && y && g && m && x)
                                     ) {
-                                        t.next = 25;
+                                        t.next = 26;
                                         break;
                                     }
                                     return (
                                         console.error('getManDataById: can not got data'),
-                                        console.log(g),
-                                        t.abrupt('return', r)
+                                        console.log(w),
+                                        t.abrupt('return', n)
                                     );
-                                case 25:
-                                    return t.abrupt('return', g);
                                 case 26:
+                                    return t.abrupt('return', w);
+                                case 27:
                                 case 'end':
                                     return t.stop();
                             }
@@ -722,11 +725,11 @@
                 }),
             )).apply(this, arguments);
         }
-        function k() {
-            return _.apply(this, arguments);
+        function S() {
+            return E.apply(this, arguments);
         }
-        function _() {
-            return (_ = i()(
+        function E() {
+            return (E = i()(
                 o.a.mark(function t() {
                     var e, r;
                     return o.a.wrap(function(t) {
@@ -736,8 +739,8 @@
                                     return (
                                         (t.next = 2),
                                         Promise.all(
-                                            [1, 2, 3, 4, 5].map(function(t) {
-                                                return c('/guild/members/page_' + t);
+                                            [1].map(function(t) {
+                                                return l('/guild/members/page_' + t);
                                             }),
                                         )
                                     );
@@ -762,61 +765,61 @@
                 }),
             )).apply(this, arguments);
         }
-        function S() {
-            return E.apply(this, arguments);
+        function O(t) {
+            return j.apply(this, arguments);
         }
-        function E() {
-            return (E = i()(
-                o.a.mark(function t() {
-                    var e, r, n, a, i, c, u, s, l, f;
+        function j() {
+            return (j = i()(
+                o.a.mark(function t(e) {
+                    var r, n, a, i, c, u, l, s, f, p;
                     return o.a.wrap(
                         function(t) {
                             for (;;)
                                 switch ((t.prev = t.next)) {
                                     case 0:
-                                        return (t.next = 2), k();
+                                        return (t.next = 2), S();
                                     case 2:
-                                        (e = t.sent),
-                                            (r = e.length),
-                                            console.log('idList', e),
-                                            (n = []),
-                                            (a = !0),
-                                            (i = !1),
-                                            (c = void 0),
+                                        (r = t.sent),
+                                            (n = r.length),
+                                            console.log('idList', r),
+                                            (a = []),
+                                            (i = !0),
+                                            (c = !1),
+                                            (u = void 0),
                                             (t.prev = 9),
-                                            (u = e[Symbol.iterator]());
+                                            (l = r[Symbol.iterator]());
                                     case 11:
-                                        if ((a = (s = u.next()).done)) {
+                                        if ((i = (s = l.next()).done)) {
                                             t.next = 23;
                                             break;
                                         }
-                                        return (l = s.value), (t.next = 15), b(l);
+                                        return (f = s.value), (t.next = 15), k(e, f);
                                     case 15:
-                                        return (f = t.sent), n.push(f), (t.next = 19), v(1e3);
+                                        return (p = t.sent), a.push(p), (t.next = 19), L(1e3);
                                     case 19:
-                                        console.log('getManList progress:', Math.floor((n.length / r) * 100) + '%');
+                                        console.log('getManList progress:', Math.floor((a.length / n) * 100) + '%');
                                     case 20:
-                                        (a = !0), (t.next = 11);
+                                        (i = !0), (t.next = 11);
                                         break;
                                     case 23:
                                         t.next = 29;
                                         break;
                                     case 25:
-                                        (t.prev = 25), (t.t0 = t.catch(9)), (i = !0), (c = t.t0);
+                                        (t.prev = 25), (t.t0 = t.catch(9)), (c = !0), (u = t.t0);
                                     case 29:
-                                        (t.prev = 29), (t.prev = 30), a || null == u.return || u.return();
+                                        (t.prev = 29), (t.prev = 30), i || null == l.return || l.return();
                                     case 32:
-                                        if (((t.prev = 32), !i)) {
+                                        if (((t.prev = 32), !c)) {
                                             t.next = 35;
                                             break;
                                         }
-                                        throw c;
+                                        throw u;
                                     case 35:
                                         return t.finish(32);
                                     case 36:
                                         return t.finish(29);
                                     case 37:
-                                        return t.abrupt('return', n);
+                                        return t.abrupt('return', a);
                                     case 38:
                                     case 'end':
                                         return t.stop();
@@ -832,34 +835,34 @@
                 }),
             )).apply(this, arguments);
         }
-        function O() {
-            return j.apply(this, arguments);
+        function I(t) {
+            return P.apply(this, arguments);
         }
-        function j() {
-            return (j = i()(
-                o.a.mark(function t() {
-                    var e, r, n, a;
+        function P() {
+            return (P = i()(
+                o.a.mark(function t(e) {
+                    var r, n, a, i;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
                                 case 0:
-                                    return (t.next = 2), s();
+                                    return (t.next = 2), f();
                                 case 2:
-                                    return (e = t.sent), console.log('guildLevel', e), (t.next = 6), d();
+                                    return (r = t.sent), console.log('guildLevel:', r), (t.next = 6), h();
                                 case 6:
-                                    return (r = t.sent), console.log('altarLevel', r), (t.next = 10), x();
+                                    return (n = t.sent), console.log('altarLevel:', n), (t.next = 10), g();
                                 case 10:
-                                    return (n = t.sent), console.log('guildCard', n), (t.next = 14), S();
+                                    return (a = t.sent), console.log('guildCard:', a), (t.next = 14), O(e);
                                 case 14:
                                     return (
-                                        (a = t.sent),
-                                        console.log('manList', a),
+                                        (i = t.sent),
+                                        console.log('manList:', i),
                                         t.abrupt('return', {
-                                            timeStamp: h(),
-                                            guildLevel: e,
-                                            altarLevel: r,
-                                            guildCard: n,
-                                            manList: a,
+                                            timeStamp: b(),
+                                            guildLevel: r,
+                                            altarLevel: n,
+                                            guildCard: a,
+                                            manList: i,
                                         })
                                     );
                                 case 17:
@@ -870,6 +873,34 @@
                 }),
             )).apply(this, arguments);
         }
+        function C(t, e) {
+            var r = 'data:application/octet-stream,' + encodeURIComponent(JSON.stringify(e, null, 4));
+            return fetch(r)
+                .then(function(t) {
+                    return t.blob();
+                })
+                .then(function(e) {
+                    if ('undefined' == typeof document) return console.error('document is not define'), null;
+                    var r = document.body;
+                    if (!r) return console.error('body is not define'), null;
+                    var n = URL.createObjectURL(e),
+                        o = document.createElement('a');
+                    return (
+                        (o.style.display = 'none'),
+                        (o.href = n),
+                        (o.download = t + '.json'),
+                        r.append(o),
+                        o.click(),
+                        console.log('Your file has downloaded!'),
+                        URL.revokeObjectURL(n),
+                        r.removeChild(o),
+                        null
+                    );
+                })
+                .catch(function(t) {
+                    return console.error(t.message), t;
+                });
+        }
         i()(
             o.a.mark(function t() {
                 var e;
@@ -877,10 +908,12 @@
                     for (;;)
                         switch ((t.prev = t.next)) {
                             case 0:
-                                return (t.next = 2), O();
+                                return (t.next = 2), I(c);
                             case 2:
-                                (e = t.sent), console.log('reportData'), console.log(e);
+                                return (e = t.sent), (t.next = 5), C('report-usual', e);
                             case 5:
+                                console.log('reportData'), console.log(e);
+                            case 7:
                             case 'end':
                                 return t.stop();
                         }
