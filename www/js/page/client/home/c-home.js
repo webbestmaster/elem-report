@@ -6,6 +6,7 @@ import {type ReportDataType} from '../../../../../extract/extract-type';
 
 import type {NullableType} from '../../../lib/type';
 import {getFileAsJson} from '../../../lib/file';
+import {GuildStatistics} from '../guild-statistics/c-guild-statistics';
 
 // import homeStyle from './home.scss';
 
@@ -50,11 +51,17 @@ export class Home extends Component<PropsType, StateType> {
     };
 
     render(): Node {
+        const {state} = this;
+        const {report} = state;
+        const {before, after} = report;
+
         return (
             <>
                 <h1>Reporter</h1>
                 <br/>
                 <input multiple onChange={this.handleTwoFileChange} type="file"/>
+                <hr/>
+                {before && after ? <GuildStatistics report={{before, after}}/> : null}
             </>
         );
     }
