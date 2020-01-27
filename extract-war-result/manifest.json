@@ -3,11 +3,11 @@
     "name": "Elem Report War",
     "version": "0.1",
     "icons": {
-        "16": "elem-16x16.png",
-        "32": "elem-32x32.png",
-        "48": "elem-48x48.png",
-        "128": "elem-128x128.png",
-        "144": "elem-144x144.png"
+        "16": "elem-war-16x16.png",
+        "32": "elem-war-32x32.png",
+        "48": "elem-war-48x48.png",
+        "128": "elem-war-128x128.png",
+        "144": "elem-war-144x144.png"
     },
     "content_scripts": [
         {
