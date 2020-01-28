@@ -6,6 +6,8 @@ import type {NullableType} from '../../lib/type';
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
 import {timeToHumanDateString} from '../../../../extract/util/time';
 
+import guildStatisticsStyle from './guild-statistics.scss';
+
 import {
     getAllDeckValue,
     getAverageDeckValue,
@@ -14,6 +16,7 @@ import {
     getNewMemberList,
     intWithSpaces,
 } from './guild-statistics-helper';
+import {FontColorHeader, FontColorNegative, FontColorPositive, FontColorText} from './c-font-color';
 
 type PropsType = {|
     +report: {|
@@ -47,14 +50,17 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         return (
             <>
-                <p>
-                    Гильдию покинули:{' '}
+                <FontColorText isBold>Гильдию покинули:&nbsp;</FontColorText>
+                <FontColorText>
                     {leaveMemberList.map((man: GuildManDataType): string => man.name).join(', ') || '-'}
-                </p>
-                <p>
-                    В гильдию приняты:{' '}
+                </FontColorText>
+
+                <br/>
+
+                <FontColorText isBold>В гильдию приняты:&nbsp;</FontColorText>
+                <FontColorText>
                     {newMemberList.map((man: GuildManDataType): string => man.name).join(', ') || '-'}
-                </p>
+                </FontColorText>
             </>
         );
     }
@@ -69,14 +75,20 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         const allDelta = allDeckValueAfter - allDeckValueBefore;
         const averageDelta = deckAverageValueAfter - deckAverageValueBefore;
-        const averageDeltaNode = averageDelta >= 0 ? <span>+{averageDelta}</span> : <span>-{averageDelta}</span>;
+        const averageDeltaNode = averageDelta > 0 ? `+${averageDelta}` : `-${averageDelta}`;
+        const ValueWrapper = averageDelta > 0 ? FontColorPositive : FontColorNegative;
 
         return (
             <>
-                <p>
-                    Средняя колода - {intWithSpaces(deckAverageValueAfter)} [{averageDeltaNode}]
-                </p>
-                <p>Общий прирост колод - {intWithSpaces(allDelta)}</p>
+                <FontColorText isBold>Средняя колода - </FontColorText>
+                <ValueWrapper>
+                    {intWithSpaces(deckAverageValueAfter)} [{averageDeltaNode}]
+                </ValueWrapper>
+
+                <br/>
+
+                <FontColorText isBold>Общий прирост колод - </FontColorText>
+                <ValueWrapper>{intWithSpaces(allDelta)}</ValueWrapper>
             </>
         );
     }
@@ -122,20 +134,42 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         }
 
         return (
-            <>
-                <p>
-                    Статистика по гильдии за период с&nbsp;
-                    {timeToHumanDateString(before.timeStamp)}&nbsp;по&nbsp;{timeToHumanDateString(after.timeStamp)}:
-                </p>
-                <p>Боевой рейтинг - {after.guildLevel}</p>
-                <p>Уровень алтаря - {after.altarLevel}</p>
-                <p>
+            <div className={guildStatisticsStyle.guild_statistics__wrapper}>
+                <FontColorHeader isBold>Статистика по гильдии за период</FontColorHeader>
+
+                <br/>
+
+                <FontColorHeader isBold>
+                    с&nbsp;{timeToHumanDateString(before.timeStamp)}&nbsp;по&nbsp;
+                    {timeToHumanDateString(after.timeStamp)}:
+                </FontColorHeader>
+
+                <br/>
+
+                <FontColorText isBold>Боевой рейтинг - {after.guildLevel}</FontColorText>
+
+                <br/>
+
+                <FontColorText isBold>Уровень алтаря - {after.altarLevel}</FontColorText>
+
+                <br/>
+
+                <FontColorText isBold>
                     Уровень карты гильдии - {afterGuildCard.level} [{afterGuildCard.value}]
-                </p>
+                </FontColorText>
+
+                <br/>
+
                 {this.renderAverageDeckValue()}
+
+                <br/>
+
                 {this.renderManDelta()}
+
+                <br/>
+
                 {this.renderMemberList()}
-            </>
+            </div>
         );
     }
 }
