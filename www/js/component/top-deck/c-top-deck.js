@@ -49,8 +49,7 @@ export class TopDeck extends Component<PropsType, StateType> {
 
         return (
             <Fragment key={man.id}>
-                {index + 1}. {man.name} <code>[{intWithSpaces(man.deckValue)}]</code>
-                {arrow}
+                {index + 1}. {man.name} [{intWithSpaces(man.deckValue)}]{arrow}
                 <br/>
             </Fragment>
         );
@@ -114,7 +113,6 @@ export class TopDeck extends Component<PropsType, StateType> {
                 </button>
                 <hr/>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>
-                    <hr/>
                     <center>
                         <FontColorHeader isBold>꧁ ТОП КОЛОД ꧂</FontColorHeader>
                         <br/>
