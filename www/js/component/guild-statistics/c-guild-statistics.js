@@ -1,13 +1,13 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+/* global navigator */
 
-import type {NullableType} from '../../lib/type';
+import React, {Component, Fragment, type Node} from 'react';
+
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
 import {timeToHumanDateString} from '../../../../extract/util/time';
 
-import guildStatisticsStyle from './guild-statistics.scss';
-
+import {FontColorHeader, FontColorNegative, FontColorPositive, FontColorText} from './c-font-color';
 import {
     getAllDeckValue,
     getAverageDeckValue,
@@ -16,7 +16,8 @@ import {
     getNewMemberList,
     intWithSpaces,
 } from './guild-statistics-helper';
-import {FontColorHeader, FontColorNegative, FontColorPositive, FontColorText} from './c-font-color';
+import guildStatisticsStyle from './guild-statistics.scss';
+import {siteHost, siteLinkPrefix} from './guild-statistics-const';
 
 type PropsType = {|
     +report: {|
@@ -25,13 +26,17 @@ type PropsType = {|
     |},
 |};
 
-type StateType = {};
+type StateType = {|
+    +wrapperRef: {current: HTMLElement | null},
+|};
 
 export class GuildStatistics extends Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            wrapperRef: React.createRef<HTMLElement>(),
+        };
     }
 
     getReport(): {|before: ReportDataType, +after: ReportDataType|} {
@@ -93,6 +98,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         );
     }
 
+    // eslint-disable-next-line complexity
     renderMemberListItem = (man: GuildManDataType): Node => {
         const {before, after} = this.getReport();
 
@@ -104,27 +110,63 @@ export class GuildStatistics extends Component<PropsType, StateType> {
             return null;
         }
 
+        const levelDelta = manAfter.level - manBefore.level;
+        const deckValueDelta = manAfter.deckValue - manBefore.deckValue;
+
+        const LevelDeltaWrapper = levelDelta > 0 ? FontColorPositive : FontColorText;
+        const deckValueString = intWithSpaces(manAfter.deckValue);
+        const deckValueNode
+            = deckValueDelta > 0
+                ? <FontColorPositive>{`${deckValueString} [+${deckValueDelta}]`}</FontColorPositive>
+                : <FontColorText>{deckValueString}</FontColorText>
+
+            ;
+
         return (
-            <p key={man.id}>
-                <a href={'/user/' + manAfter.id}>{manAfter.name}</a>
-                <span> - [{manAfter.level}]</span>
-                <span>
-                    сила: {manAfter.deckValue} [{manAfter.deckValue - manBefore.deckValue}]
-                </span>
-                <span>
-                    {manAfter.rank}, в гильдии {manAfter.daysInGame}
-                </span>
-            </p>
+            <Fragment key={man.id}>
+                <img alt="" height="20" src={siteLinkPrefix + manAfter.avatarSrc} width="auto"/>
+                <a href={siteLinkPrefix + '/user/' + manAfter.id} rel="noopener noreferrer" target="_blank">
+                    <FontColorHeader>{manAfter.name}</FontColorHeader>
+                </a>
+                &nbsp;
+                <FontColorText>
+                    [<LevelDeltaWrapper>{manAfter.level}</LevelDeltaWrapper>] -
+                </FontColorText>
+                &nbsp;
+                <img alt="" height="18" src={siteLinkPrefix + '/img/gifts/pr-swords-01.png'}/>
+                {deckValueNode}
+                <br/>
+                <FontColorText>
+                    {manAfter.rank}, в гильдии {manAfter.daysInGame} д.
+                </FontColorText>
+                <br/>
+            </Fragment>
         );
     };
 
-    renderMemberList(): Node {
-        const {before, after} = this.getReport();
+    renderMemberList(): Array<Node> {
+        const {after} = this.getReport();
 
-        return <div>{after.manList.map(this.renderMemberListItem)}</div>;
+        return after.manList.map(this.renderMemberListItem);
     }
 
+    handleGetHtml = async () => {
+        const {state} = this;
+        const {wrapperRef} = state;
+        const wrapperNode = wrapperRef.current;
+
+        if (!wrapperNode) {
+            console.error('handleGetHtml: Can not get wrapperRef.current');
+            return;
+        }
+
+        const htmlCode = wrapperNode.innerHTML;
+
+        navigator.clipboard.writeText(htmlCode);
+    };
+
     render(): Node {
+        const {state} = this;
         const {before, after} = this.getReport();
 
         const {guildCard: afterGuildCard} = after;
@@ -134,42 +176,49 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         }
 
         return (
-            <div className={guildStatisticsStyle.guild_statistics__wrapper}>
-                <FontColorHeader isBold>Статистика по гильдии за период</FontColorHeader>
+            <>
+                <button onClick={this.handleGetHtml} type="button">
+                    [ Het HTML code ]
+                </button>
+                <hr/>
+                <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>
+                    <FontColorHeader isBold>Статистика по гильдии за период</FontColorHeader>
 
-                <br/>
+                    <br/>
 
-                <FontColorHeader isBold>
-                    с&nbsp;{timeToHumanDateString(before.timeStamp)}&nbsp;по&nbsp;
-                    {timeToHumanDateString(after.timeStamp)}:
-                </FontColorHeader>
+                    <FontColorHeader isBold>
+                        с&nbsp;{timeToHumanDateString(before.timeStamp)}&nbsp;по&nbsp;
+                        {timeToHumanDateString(after.timeStamp)}:
+                    </FontColorHeader>
 
-                <br/>
+                    <br/>
 
-                <FontColorText isBold>Боевой рейтинг - {after.guildLevel}</FontColorText>
+                    <FontColorText isBold>Боевой рейтинг - {after.guildLevel}</FontColorText>
 
-                <br/>
+                    <br/>
 
-                <FontColorText isBold>Уровень алтаря - {after.altarLevel}</FontColorText>
+                    <FontColorText isBold>Уровень алтаря - {after.altarLevel}</FontColorText>
 
-                <br/>
+                    <br/>
 
-                <FontColorText isBold>
-                    Уровень карты гильдии - {afterGuildCard.level} [{afterGuildCard.value}]
-                </FontColorText>
+                    <FontColorText isBold>
+                        Уровень карты гильдии - {afterGuildCard.level} [{afterGuildCard.value}]
+                    </FontColorText>
 
-                <br/>
+                    <br/>
 
-                {this.renderAverageDeckValue()}
+                    {this.renderAverageDeckValue()}
 
-                <br/>
+                    <br/>
 
-                {this.renderManDelta()}
+                    {this.renderManDelta()}
 
-                <br/>
+                    <br/>
+                    <br/>
 
-                {this.renderMemberList()}
-            </div>
+                    {this.renderMemberList()}
+                </div>
+            </>
         );
     }
 }

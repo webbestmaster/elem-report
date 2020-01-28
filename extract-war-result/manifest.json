@@ -12,8 +12,8 @@
     "content_scripts": [
         {
             "matches": [
-                "https://mailru.elem.mobi/*",
-                "https://elem.mobi/*"
+                "https://mailru.elem.mobi/?report",
+                "https://elem.mobi/?report"
             ],
             "js": [
                 "main.js"

@@ -6,7 +6,7 @@ import React, {Component, type Node} from 'react';
 
 import {isBoolean} from '../../lib/is';
 
-type ColorType = '#FF9A71' | '#FFDFD2' | '#4DAC83' | '#AC363C';
+type ColorType = '#FF9A71' | '#FFDFD2' | '#4DAC83' | '#D60808';
 
 type FontPropsType = {|
     +color: ColorType,
@@ -65,7 +65,7 @@ export function FontColorNegative(props: FontColorPropsType): Node {
     const {children, isBold} = props;
 
     return (
-        <Font color="#AC363C" isBold={isBold}>
+        <Font color="#D60808" isBold={isBold}>
             {children}
         </Font>
     );

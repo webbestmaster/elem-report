@@ -17,8 +17,8 @@ const webpackConfig = {
     output: {
         path: path.join(cwd, pathToDist),
         publicPath: `${isDevelopment || isBuildServer ? '' : pathToStaticFileFolder}/`,
-        filename: isDevelopment ? '[name].js' : '[name].[hash:6].js',
-        // filename: 'main.js',
+        // filename: isDevelopment ? '[name].js' : '[name].[hash:6].js',
+        filename: 'main.js',
         chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[hash:6].chunk.js',
     },
 

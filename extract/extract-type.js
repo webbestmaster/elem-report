@@ -16,6 +16,7 @@ export type GuildManDataType = {|
     +deckValue: number,
     +daysInGame: number,
     +warData: NullableType<GuildManWarDataType>,
+    +avatarSrc: string,
 |};
 
 export type GuildCardDataType = {|
