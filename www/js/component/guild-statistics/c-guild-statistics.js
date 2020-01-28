@@ -6,6 +6,7 @@ import React, {Component, Fragment, type Node} from 'react';
 
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
 import {timeToHumanDateString} from '../../../../extract/util/time';
+import type {SnackbarContextType} from '../../provider/snackbar/snackbar-context-type';
 
 import {FontColorHeader, FontColorNegative, FontColorPositive, FontColorText} from './c-font-color';
 import {
@@ -20,6 +21,7 @@ import guildStatisticsStyle from './guild-statistics.scss';
 import {siteHost, siteLinkPrefix} from './guild-statistics-const';
 
 type PropsType = {|
+    +snackbarContext: SnackbarContextType,
     +report: {|
         +before: ReportDataType,
         +after: ReportDataType,
@@ -140,6 +142,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
                     {manAfter.rank}, в гильдии {manAfter.daysInGame} д.
                 </FontColorText>
                 <br/>
+                <br/>
             </Fragment>
         );
     };
@@ -151,7 +154,8 @@ export class GuildStatistics extends Component<PropsType, StateType> {
     }
 
     handleGetHtml = async () => {
-        const {state} = this;
+        const {state, props} = this;
+        const {snackbarContext} = props;
         const {wrapperRef} = state;
         const wrapperNode = wrapperRef.current;
 
@@ -162,7 +166,19 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         const htmlCode = wrapperNode.innerHTML;
 
-        navigator.clipboard.writeText(htmlCode);
+        console.log(htmlCode);
+
+        navigator.clipboard
+            .writeText(htmlCode)
+            .then((): mixed => {
+                return snackbarContext.showSnackbar(
+                    {children: 'HTML code has been copied!', variant: 'success'},
+                    'success-id'
+                );
+            })
+            .catch((): mixed => {
+                return snackbarContext.showSnackbar({children: 'Error!', variant: 'error'}, 'error-id');
+            });
     };
 
     render(): Node {

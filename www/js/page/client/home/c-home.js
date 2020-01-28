@@ -7,10 +7,13 @@ import {type ReportDataType} from '../../../../../extract/extract-type';
 import type {NullableType} from '../../../lib/type';
 import {getFileAsJson} from '../../../lib/file';
 import {GuildStatistics} from '../../../component/guild-statistics/c-guild-statistics';
+import type {SnackbarContextType} from '../../../provider/snackbar/snackbar-context-type';
 
 // import homeStyle from './home.scss';
 
-type PropsType = {};
+type PropsType = {
+    +snackbarContext: SnackbarContextType,
+};
 
 type StateType = {|
     +report: {|
@@ -32,6 +35,7 @@ export class Home extends Component<PropsType, StateType> {
     }
 
     componentDidMount() {
+        console.log(this.props);
         console.log('---> Component Home did mount');
     }
 
@@ -51,7 +55,8 @@ export class Home extends Component<PropsType, StateType> {
     };
 
     render(): Node {
-        const {state} = this;
+        const {state, props} = this;
+        const {snackbarContext} = props;
         const {report} = state;
         const {before, after} = report;
 
@@ -61,7 +66,9 @@ export class Home extends Component<PropsType, StateType> {
                 <br/>
                 <input multiple onChange={this.handleTwoFileChange} type="file"/>
                 <hr/>
-                {before && after ? <GuildStatistics report={{before, after}}/> : null}
+                {before && after
+                    ? <GuildStatistics report={{before, after}} snackbarContext={snackbarContext}/>
+                    : null}
             </>
         );
     }
