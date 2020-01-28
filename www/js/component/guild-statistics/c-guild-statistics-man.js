@@ -13,6 +13,7 @@ type PropsType = {|
     +after: ReportDataType,
     +man: GuildManDataType,
 |};
+
 type StateType = null;
 
 export class GuildStatisticsMan extends Component<PropsType, StateType> {

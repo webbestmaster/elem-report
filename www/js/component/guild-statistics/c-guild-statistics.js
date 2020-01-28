@@ -122,7 +122,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         const wrapperNode = wrapperRef.current;
 
         if (!wrapperNode) {
-            console.error('handleGetHtml: Can not get wrapperRef.current');
+            console.error('GuildStatistics.handleGetHtml: Can not get wrapperRef.current');
             return;
         }
 
@@ -156,7 +156,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         return (
             <>
                 <button onClick={this.handleGetHtml} type="button">
-                    [ Het HTML code ]
+                    [ Get HTML code ]
                 </button>
                 <hr/>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>

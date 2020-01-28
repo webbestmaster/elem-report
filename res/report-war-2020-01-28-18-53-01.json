@@ -20,18 +20,6 @@
             }
         },
         {
-            "id": 5424950,
-            "name": "Ведьмак",
-            "level": 107,
-            "rank": "Десница",
-            "deckValue": 131818,
-            "daysInGame": 1014,
-            "avatarSrc": "/avatars/vedmak2.jpg",
-            "warData": {
-                "deckValue": 218937
-            }
-        },
-        {
             "id": 6796792,
             "name": "Пушистый Пипец",
             "level": 110,

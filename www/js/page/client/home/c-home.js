@@ -8,6 +8,7 @@ import type {NullableType} from '../../../lib/type';
 import {getFileAsJson} from '../../../lib/file';
 import {GuildStatistics} from '../../../component/guild-statistics/c-guild-statistics';
 import type {SnackbarContextType} from '../../../provider/snackbar/snackbar-context-type';
+import {TopDeck} from '../../../component/top-deck/c-top-deck';
 
 // import homeStyle from './home.scss';
 
@@ -69,6 +70,8 @@ export class Home extends Component<PropsType, StateType> {
                 {before && after
                     ? <GuildStatistics report={{before, after}} snackbarContext={snackbarContext}/>
                     : null}
+                <hr/>
+                {before && after ? <TopDeck report={{before, after}} snackbarContext={snackbarContext}/> : null}
             </>
         );
     }

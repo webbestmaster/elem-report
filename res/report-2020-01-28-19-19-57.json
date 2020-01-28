@@ -7,16 +7,7 @@
         "level": 170
     },
     "manList": [
-        {
-            "id": 2212890,
-            "name": "Сэнсэй Донбасс",
-            "level": 106,
-            "rank": "Магистр",
-            "deckValue": 113212,
-            "daysInGame": 1495,
-            "avatarSrc": "/avatars/_avatar_2212890.jpg",
-            "warData": null
-        },
+
         {
             "id": 5424950,
             "name": "Ведьмак",
@@ -52,7 +43,7 @@
             "name": "Mymyi",
             "level": 106,
             "rank": "Маршал",
-            "deckValue": 145858,
+            "deckValue": 1145858,
             "daysInGame": 1046,
             "avatarSrc": "/cards/earth/carefree_hobbit_1_100.jpg",
             "warData": null
