@@ -19,6 +19,7 @@ import {
 } from './guild-statistics-helper';
 import guildStatisticsStyle from './guild-statistics.scss';
 import {siteHost, siteLinkPrefix} from './guild-statistics-const';
+import {GuildStatisticsMan} from './c-guild-statistics-man';
 
 type PropsType = {|
     +snackbarContext: SnackbarContextType,
@@ -82,7 +83,8 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         const allDelta = allDeckValueAfter - allDeckValueBefore;
         const averageDelta = deckAverageValueAfter - deckAverageValueBefore;
-        const averageDeltaNode = averageDelta > 0 ? `+${averageDelta}` : `-${averageDelta}`;
+        const averageDeltaNode
+            = averageDelta > 0 ? `+${intWithSpaces(averageDelta)}` : `-${intWithSpaces(Math.abs(averageDelta))}`;
         const ValueWrapper = averageDelta > 0 ? FontColorPositive : FontColorNegative;
 
         return (
@@ -104,47 +106,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
     renderMemberListItem = (man: GuildManDataType): Node => {
         const {before, after} = this.getReport();
 
-        const manAfter = getManById(man.id, after);
-        const manBefore = getManById(man.id, before) || manAfter;
-
-        if (!manAfter || !manBefore) {
-            console.error('renderMemberListItem: manAfter and manBefore is not define');
-            return null;
-        }
-
-        const levelDelta = manAfter.level - manBefore.level;
-        const deckValueDelta = manAfter.deckValue - manBefore.deckValue;
-
-        const LevelDeltaWrapper = levelDelta > 0 ? FontColorPositive : FontColorText;
-        const deckValueString = intWithSpaces(manAfter.deckValue);
-        const deckValueNode
-            = deckValueDelta > 0
-                ? <FontColorPositive>{`${deckValueString} [+${deckValueDelta}]`}</FontColorPositive>
-                : <FontColorText>{deckValueString}</FontColorText>
-
-            ;
-
-        return (
-            <Fragment key={man.id}>
-                <img alt="" height="20" src={siteLinkPrefix + manAfter.avatarSrc} width="auto"/>
-                <a href={siteLinkPrefix + '/user/' + manAfter.id} rel="noopener noreferrer" target="_blank">
-                    <FontColorHeader>{manAfter.name}</FontColorHeader>
-                </a>
-                &nbsp;
-                <FontColorText>
-                    [<LevelDeltaWrapper>{manAfter.level}</LevelDeltaWrapper>] -
-                </FontColorText>
-                &nbsp;
-                <img alt="" height="18" src={siteLinkPrefix + '/img/gifts/pr-swords-01.png'}/>
-                {deckValueNode}
-                <br/>
-                <FontColorText>
-                    {manAfter.rank}, в гильдии {manAfter.daysInGame} д.
-                </FontColorText>
-                <br/>
-                <br/>
-            </Fragment>
-        );
+        return <GuildStatisticsMan after={after} before={before} key={man.id} man={man}/>;
     };
 
     renderMemberList(): Array<Node> {
@@ -218,7 +180,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
                     <br/>
 
                     <FontColorText isBold>
-                        Уровень карты гильдии - {afterGuildCard.level} [{afterGuildCard.value}]
+                        Уровень карты гильдии - {afterGuildCard.level} [{intWithSpaces(afterGuildCard.value)}]
                     </FontColorText>
 
                     <br/>
