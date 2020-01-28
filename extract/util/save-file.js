@@ -5,7 +5,7 @@
 import type {NullableType} from '../extract-type';
 
 export function saveDataAsJsonFile(fileName: string, data: {}): Promise<NullableType<Error>> {
-    const uriContent = 'data:application/octet-stream,' + encodeURIComponent(JSON.stringify(data, null, 4));
+    const uriContent = 'data:application/octet-stream,' + encodeURIComponent(JSON.stringify(data, null, 4) + '\n');
 
     return fetch(uriContent)
         .then((resp: Response): Promise<Blob> => resp.blob())
