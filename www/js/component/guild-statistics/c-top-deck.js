@@ -5,10 +5,11 @@
 import React, {Component, Fragment, type Node} from 'react';
 
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
-import {FontColorHeader, FontColorText} from '../guild-statistics/c-font-color';
 import type {SnackbarContextType} from '../../provider/snackbar/snackbar-context-type';
-import {intWithSpaces} from '../guild-statistics/guild-statistics-helper';
-import guildStatisticsStyle from '../guild-statistics/guild-statistics.scss';
+
+import {FontColorHeader, FontColorText} from './c-font-color';
+import {htmlToBbCode, intWithSpaces} from './guild-statistics-helper';
+import guildStatisticsStyle from './guild-statistics.scss';
 
 type PropsType = {|
     +snackbarContext: SnackbarContextType,
@@ -75,26 +76,28 @@ export class TopDeck extends Component<PropsType, StateType> {
         );
     }
 
-    handleGetHtml = async () => {
+    handleGetBBCode = async () => {
         const {state, props} = this;
         const {snackbarContext} = props;
         const {wrapperRef} = state;
         const wrapperNode = wrapperRef.current;
 
         if (!wrapperNode) {
-            console.error('TopDeck.handleGetHtml: Can not get wrapperRef.current');
+            console.error('TopDeck.handleGetBBCode: Can not get wrapperRef.current');
             return;
         }
 
         const htmlCode = wrapperNode.innerHTML;
+        const bbCode = htmlToBbCode(htmlCode);
 
-        console.log(htmlCode);
+        console.log('TopDeck: BB code:');
+        console.log(bbCode);
 
         navigator.clipboard
-            .writeText(htmlCode)
+            .writeText(bbCode)
             .then((): mixed => {
                 return snackbarContext.showSnackbar(
-                    {children: 'HTML code has been copied!', variant: 'success'},
+                    {children: 'BB code has been copied!', variant: 'success'},
                     'success-id'
                 );
             })
@@ -108,8 +111,8 @@ export class TopDeck extends Component<PropsType, StateType> {
 
         return (
             <>
-                <button onClick={this.handleGetHtml} type="button">
-                    [ Get HTML code ]
+                <button onClick={this.handleGetBBCode} type="button">
+                    [ Get BB code ]
                 </button>
                 <hr/>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>

@@ -115,7 +115,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         return after.manList.map(this.renderMemberListItem);
     }
 
-    handleGetHtml = async () => {
+    handleGetBbCode = async () => {
         const {state, props} = this;
         const {snackbarContext} = props;
         const {wrapperRef} = state;
@@ -155,8 +155,8 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         return (
             <>
-                <button onClick={this.handleGetHtml} type="button">
-                    [ Get HTML code ]
+                <button onClick={this.handleGetBbCode} type="button">
+                    [ Get BB code ]
                 </button>
                 <hr/>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>

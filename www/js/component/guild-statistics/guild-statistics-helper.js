@@ -63,3 +63,29 @@ export function getLeaveMemberList(before: ReportDataType, after: ReportDataType
 export function getManById(manId: number, report: ReportDataType): GuildManDataType | void {
     return report.manList.find((man: GuildManDataType): boolean => man.id === manId);
 }
+
+export function htmlToBbCode(html: string): string {
+    // const html = '<center><b><font color="#FF9A71">꧁ ТОП КОЛОД ꧂</font></b><br><br><font color="#FFDFD2">1. Mymyi [1 145 858] - ⇧<br>2. Пушистый Пипец [146 436]<br>3. Sashache [135 234]<br>4. Ведьмак [131 818]<br>5. Melysta [130 189]<br>6. Mendax [119 250]<br>7. Roader [118 387]<br>8. Призрачная Встречная [115 062]<br>9. Dame Sorciere [111 467]<br></font></center>'
+
+    return html
+        // <center> to [center]
+        .replace(/<center>/gi, '[center]')
+        // </center> to [/center]
+        .replace(/<\/center>/gi, '[/center]')
+
+        // <br> to [br]
+        .replace(/<br>/gi, '[br]')
+
+        // <br/> to [br]
+        .replace(/<\/br>/gi, '[/br]')
+
+        // <b> to [b]
+        .replace(/<b>/gi, '[b]')
+        // </b> to [br]
+        .replace(/<\/b>/gi, '[/b]')
+
+        // <font color="#123456"> to [color=#123456]
+        .replace(/<font color="#(\w+)">/gi, '[color=#$1]')
+        // </font> to [/color]
+        .replace(/<\/font>/gi, '[/color]');
+}
