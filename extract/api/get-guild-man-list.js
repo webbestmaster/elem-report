@@ -100,7 +100,7 @@ async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDa
 
     const manWarData = {deckValue, damageValue, fightCount, keyCount, hasGoblinCard};
 
-    if (!deckValue || !damageValue || isNotNumber(fightCount) || isNotNumber(keyCount)) {
+    if (isNotNumber(deckValue) || isNotNumber(damageValue) || isNotNumber(fightCount) || isNotNumber(keyCount)) {
         console.error('getManWarDataById: can not got data, id:', id);
         console.log(manWarData);
 

@@ -59,6 +59,11 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
         }
 
         const {deckValue, damageValue, fightCount, keyCount} = warData;
+
+        if (deckValue === 0 || fullFightCount === 0) {
+            return null;
+        }
+
         const kpd = damageValue / (deckValue * fullFightCount * 3);
 
         return (
