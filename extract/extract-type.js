@@ -6,6 +6,10 @@ export type PeriodNameType = 'usual' | 'war';
 
 export type GuildManWarDataType = {|
     +deckValue: number,
+    +damageValue: number,
+    +fightCount: number,
+    +keyCount: number,
+    +hasGoblinCard: boolean,
 |};
 
 export type GuildManDataType = {|

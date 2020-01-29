@@ -4,6 +4,7 @@ import {getNodeFromUrl} from '../util/get-data';
 import type {GuildManDataType, GuildManWarDataType, NullableType, PeriodNameType} from '../extract-type';
 import {waitForTime} from '../util/time';
 import {periodNameMap} from '../extract-const';
+import {isNotBoolean, isNotNumber} from '../../www/js/lib/is';
 
 // eslint-disable-next-line complexity, max-statements
 async function getManDataById(id: number): Promise<NullableType<GuildManDataType>> {
@@ -58,25 +59,55 @@ async function getManDataById(id: number): Promise<NullableType<GuildManDataType
     return manData;
 }
 
+function getKeysNFightNode(wrapperNode: HTMLElement): HTMLElement | null {
+    const allNodeList = [...wrapperNode.querySelectorAll('.small.c_99.mt10')];
+
+    const parentNode = allNodeList.find((childNode: HTMLElement): boolean => {
+        return childNode.textContent.indexOf('Использовано ключей') > 0;
+    });
+
+    if (!parentNode) {
+        return null;
+    }
+
+    return parentNode.querySelector('.c_orange');
+}
+
+// бои первая цифра, ключи - вторая
+
+// eslint-disable-next-line complexity
 async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDataType>> {
     const newDocument = await getNodeFromUrl(`/gwprofile/${id}/`);
     const deckValueNode = newDocument.querySelector('.c_orange.mt10.cntr.small');
+    const damageValueIconNode = newDocument.querySelector('img[src="/img/ico16-battle-sum.png"]');
+    const damageValueNode = damageValueIconNode ? damageValueIconNode.parentElement : null;
+    const keysNFightNode = getKeysNFightNode(newDocument);
 
-    if (!deckValueNode) {
-        console.error('getManWarDataById: can not get ');
+    if (!deckValueNode || !damageValueNode || !keysNFightNode) {
+        console.error('getManWarDataById: can not get nodes, id:', id, deckValueNode, damageValueNode, keysNFightNode);
+
         return null;
     }
 
     const deckValue = parseInt(deckValueNode.textContent.replace(/\D/g, ''), 10);
+    const damageValue = parseInt(damageValueNode.textContent.replace(/\D/g, ''), 10);
+    const [fightCount, keyCount] = keysNFightNode.textContent
+        .trim()
+        .split(/\D+/gi)
+        .map((count: string): number => parseInt(count.trim(), 10));
 
-    if (!deckValue) {
-        console.error('getManDataById: can not got deckValue, id:', id);
-        console.log(deckValue);
+    const hasGoblinCard = newDocument.textContent.indexOf('<span class="stat">6000</span>') > 0;
+
+    const manWarData = {deckValue, damageValue, fightCount, keyCount, hasGoblinCard};
+
+    if (!deckValue || !damageValue || isNotNumber(fightCount) || isNotNumber(keyCount)) {
+        console.error('getManWarDataById: can not got data, id:', id);
+        console.log(manWarData);
 
         return null;
     }
 
-    return {deckValue};
+    return manWarData;
 }
 
 async function getManIdList(): Promise<Array<number>> {
