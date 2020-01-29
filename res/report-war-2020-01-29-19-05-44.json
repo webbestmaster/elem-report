@@ -1,5 +1,5 @@
 {
-    "timeStamp": 1580311603522,
+    "timeStamp": 1580313944856,
     "guildLevel": 4,
     "altarLevel": 19,
     "guildCard": {
@@ -20,7 +20,7 @@
                 "damageValue": 1597049,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -36,7 +36,7 @@
                 "damageValue": 1854452,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -52,7 +52,7 @@
                 "damageValue": 2189600,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -68,7 +68,7 @@
                 "damageValue": 1849255,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -84,7 +84,7 @@
                 "damageValue": 1451849,
                 "fightCount": 2,
                 "keyCount": 2,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -100,7 +100,7 @@
                 "damageValue": 1187256,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -116,7 +116,7 @@
                 "damageValue": 1623107,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -132,7 +132,7 @@
                 "damageValue": 1277641,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -148,7 +148,7 @@
                 "damageValue": 1306532,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         },
         {
@@ -164,7 +164,7 @@
                 "damageValue": 2506818,
                 "fightCount": 2,
                 "keyCount": 3,
-                "hasGoblinCard": false
+                "hasGoblinCard": true
             }
         }
     ]

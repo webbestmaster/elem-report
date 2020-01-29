@@ -2,7 +2,7 @@
 
 /* global navigator */
 
-import React, {Component, Fragment, type Node} from 'react';
+import React, {Component, type Node} from 'react';
 
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
 import {timeToHumanDateString} from '../../../../extract/util/time';
@@ -13,13 +13,13 @@ import {
     getAllDeckValue,
     getAverageDeckValue,
     getLeaveMemberList,
-    getManById,
     getNewMemberList,
     htmlToBbCode,
     intWithSpaces,
 } from './guild-statistics-helper';
+
 import guildStatisticsStyle from './guild-statistics.scss';
-import {siteHost, siteLinkPrefix} from './guild-statistics-const';
+import {defaultFullFightCount} from './guild-statistics-const';
 import {GuildStatisticsMan} from './c-guild-statistics-man';
 
 type PropsType = {|
@@ -32,6 +32,7 @@ type PropsType = {|
 
 type StateType = {|
     +wrapperRef: {current: HTMLElement | null},
+    +fullFightCount: number,
 |};
 
 export class GuildStatistics extends Component<PropsType, StateType> {
@@ -40,6 +41,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         this.state = {
             wrapperRef: React.createRef<HTMLElement>(),
+            fullFightCount: defaultFullFightCount,
         };
     }
 
@@ -103,9 +105,13 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
     // eslint-disable-next-line complexity
     renderMemberListItem = (man: GuildManDataType): Node => {
+        const {state} = this;
+        const {fullFightCount} = state;
         const {before, after} = this.getReport();
 
-        return <GuildStatisticsMan after={after} before={before} key={man.id} man={man}/>;
+        return (
+            <GuildStatisticsMan after={after} before={before} fullFightCount={fullFightCount} key={man.id} man={man}/>
+        );
     };
 
     renderMemberList(): Array<Node> {
@@ -144,6 +150,12 @@ export class GuildStatistics extends Component<PropsType, StateType> {
             });
     };
 
+    handleChangeFullFightCount = (evt: SyntheticEvent<HTMLInputElement>) => {
+        const inputValue = parseInt(evt.currentTarget.value, 10) || defaultFullFightCount;
+
+        this.setState({fullFightCount: inputValue});
+    };
+
     render(): Node {
         const {state} = this;
         const {before, after} = this.getReport();
@@ -159,6 +171,13 @@ export class GuildStatistics extends Component<PropsType, StateType> {
                 <button onClick={this.handleGetBbCode} type="button">
                     [ Get BB code ]
                 </button>
+                <span>&nbsp;Кол-во боёв:&nbsp;</span>
+                <input
+                    className={guildStatisticsStyle.guild_statistics__input}
+                    defaultValue={6}
+                    onChange={this.handleChangeFullFightCount}
+                    type="number"
+                />
                 <hr/>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>
                     <FontColorHeader isBold>Статистика по гильдии за период</FontColorHeader>

@@ -96,7 +96,7 @@ async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDa
         .split(/\D+/gi)
         .map((count: string): number => parseInt(count.trim(), 10));
 
-    const hasGoblinCard = newDocument.textContent.indexOf('<span class="stat">6000</span>') > 0;
+    const hasGoblinCard = newDocument.innerHTML.indexOf('<span class="stat">6000</span>') > 0;
 
     const manWarData = {deckValue, damageValue, fightCount, keyCount, hasGoblinCard};
 
