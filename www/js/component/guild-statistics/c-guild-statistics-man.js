@@ -49,16 +49,14 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
 
         return (
             <>
-                <img alt="" height="20" src={siteLinkPrefix + manAfter.avatarSrc} width="auto"/>
+                <img alt="" src={siteLinkPrefix + manAfter.avatarSrc} width="20"/>{' '}
                 <a href={siteLinkPrefix + '/user/' + manAfter.id} rel="noopener noreferrer" target="_blank">
                     <FontColorHeader>{manAfter.name}</FontColorHeader>
-                </a>
-                &nbsp;
+                </a>{' '}
                 <FontColorText>
                     [<LevelDeltaWrapper>{manAfter.level}</LevelDeltaWrapper>] -
-                </FontColorText>
-                &nbsp;
-                <img alt="" height="18" src={siteLinkPrefix + '/img/gifts/pr-swords-01.png'}/>
+                </FontColorText>{' '}
+                <img alt="" src={siteLinkPrefix + '/img/gifts/pr-swords-01.png'} width="18"/>{' '}
                 {this.renderDeckValue(manBefore.deckValue, manAfter.deckValue)}
                 <br/>
                 <FontColorText>

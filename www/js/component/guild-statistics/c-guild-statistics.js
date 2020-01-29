@@ -15,6 +15,7 @@ import {
     getLeaveMemberList,
     getManById,
     getNewMemberList,
+    htmlToBbCode,
     intWithSpaces,
 } from './guild-statistics-helper';
 import guildStatisticsStyle from './guild-statistics.scss';
@@ -58,14 +59,12 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         return (
             <>
-                <FontColorText isBold>Гильдию покинули:&nbsp;</FontColorText>
+                <FontColorText isBold>Гильдию покинули:</FontColorText>{' '}
                 <FontColorText>
                     {leaveMemberList.map((man: GuildManDataType): string => man.name).join(', ') || '-'}
                 </FontColorText>
-
                 <br/>
-
-                <FontColorText isBold>В гильдию приняты:&nbsp;</FontColorText>
+                <FontColorText isBold>В гильдию приняты:</FontColorText>{' '}
                 <FontColorText>
                     {newMemberList.map((man: GuildManDataType): string => man.name).join(', ') || '-'}
                 </FontColorText>
@@ -127,14 +126,16 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         }
 
         const htmlCode = wrapperNode.innerHTML;
+        const bbCode = htmlToBbCode(htmlCode);
 
-        console.log(htmlCode);
+        console.log('GuildStatistics: BB code:');
+        console.log(bbCode);
 
         navigator.clipboard
-            .writeText(htmlCode)
+            .writeText(bbCode)
             .then((): mixed => {
                 return snackbarContext.showSnackbar(
-                    {children: 'HTML code has been copied!', variant: 'success'},
+                    {children: 'BB code has been copied!', variant: 'success'},
                     'success-id'
                 );
             })
@@ -165,8 +166,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
                     <br/>
 
                     <FontColorHeader isBold>
-                        с&nbsp;{timeToHumanDateString(before.timeStamp)}&nbsp;по&nbsp;
-                        {timeToHumanDateString(after.timeStamp)}:
+                        с {timeToHumanDateString(before.timeStamp)} по {timeToHumanDateString(after.timeStamp)}:
                     </FontColorHeader>
 
                     <br/>
