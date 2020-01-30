@@ -14,13 +14,19 @@ export type GuildManWarDataType = {|
 
 export type GuildManDataType = {|
     +id: number,
+    +avatarSrc: string,
     +name: string,
     +level: number,
     +rank: string,
     +deckValue: number,
     +daysInGame: number,
+    +daysInGuild: number,
     +warData: NullableType<GuildManWarDataType>,
-    +avatarSrc: string,
+|};
+
+export type GuildManShortDataType = {|
+    +id: number,
+    +daysInGuild: number,
 |};
 
 export type GuildCardDataType = {|

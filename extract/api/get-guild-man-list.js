@@ -1,10 +1,16 @@
 // @flow
 
 import {getNodeFromUrl} from '../util/get-data';
-import type {GuildManDataType, GuildManWarDataType, NullableType, PeriodNameType} from '../extract-type';
+import type {
+    GuildManDataType,
+    GuildManWarDataType,
+    NullableType,
+    PeriodNameType,
+    GuildManShortDataType,
+} from '../extract-type';
 import {waitForTime} from '../util/time';
 import {periodNameMap} from '../extract-const';
-import {isNotBoolean, isNotNumber} from '../../www/js/lib/is';
+import {isNotNumber} from '../../www/js/lib/is';
 
 // eslint-disable-next-line complexity, max-statements
 async function getManDataById(id: number): Promise<NullableType<GuildManDataType>> {
@@ -12,6 +18,7 @@ async function getManDataById(id: number): Promise<NullableType<GuildManDataType
     const newDocument = await getNodeFromUrl(`/user/${id}/`);
     const profileSelectorDefault = '#gameBody';
     const profileSelector = 'div[class^=profile]';
+    const daysInGuild = 0;
 
     const wrapperSelector = newDocument.querySelector(profileSelector) ? profileSelector : profileSelectorDefault;
 
@@ -47,7 +54,7 @@ async function getManDataById(id: number): Promise<NullableType<GuildManDataType
     const deckValue = parseInt(deckValueNode.textContent.replace(/\D/g, ''), 10);
     const daysInGame = parseInt(daysInGameNode.textContent.replace(/\D/g, ''), 10);
 
-    const manData = {id, name, level, rank, deckValue, daysInGame, avatarSrc, warData: null};
+    const manData = {id, name, level, rank, deckValue, daysInGame, avatarSrc, warData: null, daysInGuild};
 
     if (!name || !level || !rank || !deckValue || !daysInGame || !avatarSrc) {
         console.error('getManDataById: can not got data, id:', id);
@@ -110,13 +117,13 @@ async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDa
     return manWarData;
 }
 
-async function getManIdList(): Promise<Array<number>> {
+async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
     const nodeList: Array<HTMLElement> = await Promise.all(
         [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
         // [1].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
     );
 
-    const idList: Array<number> = [];
+    const idList: Array<GuildManShortDataType> = [];
 
     nodeList.forEach((html: HTMLElement) => {
         const linkList = html.querySelectorAll('.bl.tdn.small.c_dblue.ptb5');
@@ -124,8 +131,25 @@ async function getManIdList(): Promise<Array<number>> {
         linkList.forEach((link: HTMLElement) => {
             const href = link.getAttribute('href') || '';
             const id = parseInt(href.replace(/\D/g, ''), 10);
+            const daysInGuildNode = link.querySelector('.fr.c_cc .c_99');
 
-            idList.push(id);
+            if (!daysInGuildNode) {
+                console.error('getManShortDataList: can not get daysInGuildNode');
+                return;
+            }
+
+            const daysInGuildText = daysInGuildNode.textContent.replace(/\D/gi, '');
+
+            const daysInGuild = parseInt(daysInGuildText, 10);
+
+            if (isNotNumber(daysInGuild)) {
+                console.error('getManShortDataList: daysInGuild should be a number');
+            }
+
+            idList.push({
+                id,
+                daysInGuild: daysInGuild || 0,
+            });
         });
     });
 
@@ -133,15 +157,17 @@ async function getManIdList(): Promise<Array<number>> {
 }
 
 export async function getManList(periodName: PeriodNameType): Promise<Array<GuildManDataType>> {
-    const idList = await getManIdList();
-    const idListLength = idList.length;
+    const manShortDataList = await getManShortDataList();
+    const manShortDataListLength = manShortDataList.length;
 
-    console.log('idList', idList);
+    console.log('manShortDataList', manShortDataList);
 
     const manList: Array<GuildManDataType> = [];
 
     // eslint-disable-next-line no-loops/no-loops
-    for (const id of idList) {
+    for (const manShortData of manShortDataList) {
+        const {id, daysInGuild} = manShortData;
+
         await waitForTime(1.5e3);
         const manData = await getManDataById(id);
 
@@ -149,12 +175,12 @@ export async function getManList(periodName: PeriodNameType): Promise<Array<Guil
         const warData = periodName === periodNameMap.war ? await getManWarDataById(id) : null;
 
         if (manData) {
-            manList.push({...manData, warData});
+            manList.push({...manData, warData, daysInGuild});
         } else {
-            console.error('getManList: can not get man with id:', id);
+            console.error('getManList: can not get man with manShortData:', manShortData);
         }
 
-        console.log('getManList progress:', Math.floor(manList.length / idListLength * 100) + '%');
+        console.log('getManList progress:', (manList.length / manShortDataListLength * 100).toFixed(2) + '%');
     }
 
     return manList;

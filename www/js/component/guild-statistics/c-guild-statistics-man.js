@@ -105,7 +105,7 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
                 {this.renderDeckValue(manBefore.deckValue, manAfter.deckValue)}
                 <br/>
                 <FontColorText>
-                    {manAfter.rank}, в игре {manAfter.daysInGame} д.
+                    {manAfter.rank}, в гильдии {manAfter.daysInGuild} д.
                 </FontColorText>
                 {this.renderWarInfo(manAfter)}
                 <br/>
