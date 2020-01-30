@@ -1,18 +1,14 @@
 // @flow
 
-/* global navigator */
-
 import React, {Component, Fragment, type Node} from 'react';
 
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
-import type {SnackbarContextType} from '../../provider/snackbar/snackbar-context-type';
 
 import {FontColorHeader, FontColorText} from './c-font-color';
 import {htmlToBbCode, intWithSpaces} from './guild-statistics-helper';
 import guildStatisticsStyle from './guild-statistics.scss';
 
 type PropsType = {|
-    +snackbarContext: SnackbarContextType,
     +report: {|
         +before: ReportDataType,
         +after: ReportDataType,
@@ -21,6 +17,7 @@ type PropsType = {|
 
 type StateType = {|
     +wrapperRef: {current: HTMLElement | null},
+    +bbCode: string,
 |};
 
 export class TopDeck extends Component<PropsType, StateType> {
@@ -29,7 +26,26 @@ export class TopDeck extends Component<PropsType, StateType> {
 
         this.state = {
             wrapperRef: React.createRef<HTMLElement>(),
+            bbCode: '',
         };
+    }
+
+    componentDidMount() {
+        this.refreshBbCode();
+    }
+
+    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
+        const currentBbCode = this.getBbCode();
+
+        if (prevState.bbCode !== currentBbCode) {
+            this.refreshBbCode();
+        }
+    }
+
+    refreshBbCode() {
+        const currentBbCode = this.getBbCode();
+
+        this.setState({bbCode: currentBbCode});
     }
 
     getReport(): {|before: ReportDataType, +after: ReportDataType|} {
@@ -76,44 +92,29 @@ export class TopDeck extends Component<PropsType, StateType> {
         );
     }
 
-    handleGetBBCode = async () => {
-        const {state, props} = this;
-        const {snackbarContext} = props;
+    getWrapperInnerHtml(): string {
+        const {state} = this;
         const {wrapperRef} = state;
         const wrapperNode = wrapperRef.current;
 
         if (!wrapperNode) {
-            console.error('TopDeck.handleGetBBCode: Can not get wrapperRef.current');
-            return;
+            console.error('TopDeck.getWrapperInnerHtml: Can not get wrapperRef.current');
+            return '';
         }
 
-        const htmlCode = wrapperNode.innerHTML;
-        const bbCode = htmlToBbCode(htmlCode);
+        return wrapperNode.innerHTML;
+    }
 
-        console.log('TopDeck: BB code:');
-        console.log(bbCode);
-
-        navigator.clipboard
-            .writeText(bbCode)
-            .then((): mixed => {
-                return snackbarContext.showSnackbar(
-                    {children: 'BB code has been copied!', variant: 'success'},
-                    'success-id'
-                );
-            })
-            .catch((): mixed => {
-                return snackbarContext.showSnackbar({children: 'Error!', variant: 'error'}, 'error-id');
-            });
-    };
+    getBbCode(): string {
+        return htmlToBbCode(this.getWrapperInnerHtml());
+    }
 
     render(): Node {
         const {state} = this;
+        const {bbCode} = state;
 
         return (
             <>
-                <button onClick={this.handleGetBBCode} type="button">
-                    [ Get BB code ]
-                </button>
                 <hr/>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>
                     <center>
@@ -123,6 +124,14 @@ export class TopDeck extends Component<PropsType, StateType> {
                         {this.renderManList()}
                     </center>
                 </div>
+                <textarea
+                    className={guildStatisticsStyle.guild_statistics__textarea}
+                    cols="30"
+                    disabled
+                    name="bb-code"
+                    rows="10"
+                    value={bbCode}
+                />
             </>
         );
     }

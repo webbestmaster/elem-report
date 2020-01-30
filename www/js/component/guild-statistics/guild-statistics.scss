@@ -1,5 +1,6 @@
 .guild_statistics__wrapper {
     background-color: #000;
+    margin-bottom: 20px;
     padding: 10px;
 
     b {
@@ -18,4 +19,14 @@
     padding-left: 5px;
     vertical-align: top;
     width: 35px;
+}
+
+.guild_statistics__textarea {
+    border: 1px solid #3336;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 20px;
+    padding: 20px;
+    resize: vertical;
+    width: 100%;
 }

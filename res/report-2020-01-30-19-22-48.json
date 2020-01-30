@@ -1,0 +1,121 @@
+{
+    "timeStamp": 1580401368280,
+    "guildLevel": 4,
+    "altarLevel": 20,
+    "guildCard": {
+        "value": 18384,
+        "level": 170
+    },
+    "manList": [
+        {
+            "id": 2212890,
+            "name": "Сэнсэй Донбасс",
+            "level": 106,
+            "rank": "Магистр",
+            "deckValue": 113212,
+            "daysInGame": 1497,
+            "avatarSrc": "/avatars/_avatar_2212890.jpg",
+            "warData": null,
+            "daysInGuild": 1440
+        },
+        {
+            "id": 5424950,
+            "name": "Ведьмак",
+            "level": 107,
+            "rank": "Десница",
+            "deckValue": 131818,
+            "daysInGame": 1016,
+            "avatarSrc": "/avatars/vedmak2.jpg",
+            "warData": null,
+            "daysInGuild": 1011
+        },
+        {
+            "id": 6796792,
+            "name": "Пушистый Пипец",
+            "level": 110,
+            "rank": "Маршал",
+            "deckValue": 146756,
+            "daysInGame": 789,
+            "avatarSrc": "/avatars/alexeirus1.jpg",
+            "warData": null,
+            "daysInGuild": 733
+        },
+        {
+            "id": 8299970,
+            "name": "Sashache",
+            "level": 110,
+            "rank": "Маршал",
+            "deckValue": 135234,
+            "daysInGame": 472,
+            "avatarSrc": "/avatars/_avatar_8299970.jpg",
+            "warData": null,
+            "daysInGuild": 387
+        },
+        {
+            "id": 5193032,
+            "name": "Mymyi",
+            "level": 106,
+            "rank": "Маршал",
+            "deckValue": 145858,
+            "daysInGame": 1048,
+            "avatarSrc": "/cards/earth/carefree_hobbit_1_100.jpg",
+            "warData": null,
+            "daysInGuild": 880
+        },
+        {
+            "id": 7161263,
+            "name": "Mendax",
+            "level": 106,
+            "rank": "Маршал",
+            "deckValue": 119250,
+            "daysInGame": 729,
+            "avatarSrc": "/avatars/_avatar_7161263.jpg",
+            "warData": null,
+            "daysInGuild": 691
+        },
+        {
+            "id": 2907842,
+            "name": "Dame Sorciere",
+            "level": 107,
+            "rank": "Маршал",
+            "deckValue": 111467,
+            "daysInGame": 1372,
+            "avatarSrc": "/cards/air/north_witch_1_100.jpg",
+            "warData": null,
+            "daysInGuild": 1359
+        },
+        {
+            "id": 5523911,
+            "name": "Roader",
+            "level": 102,
+            "rank": "Маршал",
+            "deckValue": 118497,
+            "daysInGame": 1001,
+            "avatarSrc": "/cards/earth/carefree_hobbit_1_100.jpg",
+            "warData": null,
+            "daysInGuild": 824
+        },
+        {
+            "id": 5026444,
+            "name": "Призрачная Встречная",
+            "level": 104,
+            "rank": "Маршал",
+            "deckValue": 115062,
+            "daysInGame": 1075,
+            "avatarSrc": "/avatars/prizrachnayavstrechnaya1.jpg",
+            "warData": null,
+            "daysInGuild": 740
+        },
+        {
+            "id": 7841428,
+            "name": "Melysta",
+            "level": 107,
+            "rank": "Маршал",
+            "deckValue": 130189,
+            "daysInGame": 591,
+            "avatarSrc": "/avatars/_avatar_7841428.jpg",
+            "warData": null,
+            "daysInGuild": 159
+        }
+    ]
+}

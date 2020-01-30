@@ -119,8 +119,8 @@ async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDa
 
 async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
     const nodeList: Array<HTMLElement> = await Promise.all(
-        [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
-        // [1].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
+        // [1, 2, 3, 4, 5].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
+        [1].map((index: number): Promise<HTMLElement> => getNodeFromUrl('/guild/members/page_' + index))
     );
 
     const idList: Array<GuildManShortDataType> = [];

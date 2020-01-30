@@ -1,12 +1,9 @@
 // @flow
 
-/* global navigator */
-
 import React, {Component, type Node} from 'react';
 
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
 import {timeToHumanDateString} from '../../../../extract/util/time';
-import type {SnackbarContextType} from '../../provider/snackbar/snackbar-context-type';
 
 import {FontColorHeader, FontColorNegative, FontColorPositive, FontColorText} from './c-font-color';
 import {
@@ -23,7 +20,6 @@ import {defaultFullFightCount} from './guild-statistics-const';
 import {GuildStatisticsMan} from './c-guild-statistics-man';
 
 type PropsType = {|
-    +snackbarContext: SnackbarContextType,
     +report: {|
         +before: ReportDataType,
         +after: ReportDataType,
@@ -33,6 +29,7 @@ type PropsType = {|
 type StateType = {|
     +wrapperRef: {current: HTMLElement | null},
     +fullFightCount: number,
+    +bbCode: string,
 |};
 
 export class GuildStatistics extends Component<PropsType, StateType> {
@@ -42,7 +39,26 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         this.state = {
             wrapperRef: React.createRef<HTMLElement>(),
             fullFightCount: defaultFullFightCount,
+            bbCode: '',
         };
+    }
+
+    componentDidMount() {
+        this.refreshBbCode();
+    }
+
+    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
+        const currentBbCode = this.getBbCode();
+
+        if (prevState.bbCode !== currentBbCode) {
+            this.refreshBbCode();
+        }
+    }
+
+    refreshBbCode() {
+        const currentBbCode = this.getBbCode();
+
+        this.setState({bbCode: currentBbCode});
     }
 
     getReport(): {|before: ReportDataType, +after: ReportDataType|} {
@@ -120,35 +136,22 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         return after.manList.map(this.renderMemberListItem);
     }
 
-    handleGetBbCode = async () => {
-        const {state, props} = this;
-        const {snackbarContext} = props;
+    getWrapperInnerHtml(): string {
+        const {state} = this;
         const {wrapperRef} = state;
         const wrapperNode = wrapperRef.current;
 
         if (!wrapperNode) {
-            console.error('GuildStatistics.handleGetHtml: Can not get wrapperRef.current');
-            return;
+            console.error('GuildStatistics.getWrapperInnerHtml: Can not get wrapperRef.current');
+            return '';
         }
 
-        const htmlCode = wrapperNode.innerHTML;
-        const bbCode = htmlToBbCode(htmlCode);
+        return wrapperNode.innerHTML;
+    }
 
-        console.log('GuildStatistics: BB code:');
-        console.log(bbCode);
-
-        navigator.clipboard
-            .writeText(bbCode)
-            .then((): mixed => {
-                return snackbarContext.showSnackbar(
-                    {children: 'BB code has been copied!', variant: 'success'},
-                    'success-id'
-                );
-            })
-            .catch((): mixed => {
-                return snackbarContext.showSnackbar({children: 'Error!', variant: 'error'}, 'error-id');
-            });
-    };
+    getBbCode(): string {
+        return htmlToBbCode(this.getWrapperInnerHtml());
+    }
 
     handleChangeFullFightCount = (evt: SyntheticEvent<HTMLInputElement>) => {
         const inputValue = parseInt(evt.currentTarget.value, 10) || defaultFullFightCount;
@@ -158,6 +161,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
     render(): Node {
         const {state} = this;
+        const {bbCode} = state;
         const {before, after} = this.getReport();
 
         const {guildCard: afterGuildCard} = after;
@@ -168,9 +172,6 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         return (
             <>
-                <button onClick={this.handleGetBbCode} type="button">
-                    [ Get BB code ]
-                </button>
                 <span>&nbsp;Кол-во боёв:&nbsp;</span>
                 <input
                     className={guildStatisticsStyle.guild_statistics__input}
@@ -215,6 +216,14 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
                     {this.renderMemberList()}
                 </div>
+                <textarea
+                    className={guildStatisticsStyle.guild_statistics__textarea}
+                    cols="30"
+                    disabled
+                    name="bb-code"
+                    rows="10"
+                    value={bbCode}
+                />
             </>
         );
     }
