@@ -19,7 +19,7 @@ module.exports.fileRegExp = /\.(webp|png|jpg|jpeg|gif|svg|otf|ttf|woff2?)$/;
 
 module.exports.pathToDist = '/dist';
 
-module.exports.pathToStaticFileFolder = '/static';
+module.exports.pathToStaticFileFolder = '/wife/elem-report';
 module.exports.pathToLoadedFileFolder = '/file';
 
 module.exports.webpackDevServerPort = 9090;

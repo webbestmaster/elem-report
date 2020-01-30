@@ -18,7 +18,7 @@ export const routeItemPage404 = {
 export const routeItemMap = {
     // client
     siteEnter: {
-        path: routePathMap.siteEnter.path,
+        path: routePathMap.siteEnter.path + 'wife/elem-report/',
         component: Home,
         type: 'route',
         pageWrapper: PageWrapper,
