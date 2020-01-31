@@ -42,12 +42,11 @@ export class Home extends Component<PropsType, StateType> {
         const {files} = currentTarget;
 
         const [file1, file2] = files;
-
         const report1 = await getFileAsJson<ReportDataType>(file1);
-        const report2 = await getFileAsJson<ReportDataType>(file2 || file1);
-
-        const before = report1.timeStamp < report2.timeStamp ? report1 : report2;
-        const after = report1.timeStamp > report2.timeStamp ? report1 : report2;
+        const report2 = file2 ? await getFileAsJson<ReportDataType>(file2) : JSON.parse(JSON.stringify(report1));
+        const [before, after] = [report1, report2].sort(
+            (reportA: ReportDataType, reportB: ReportDataType): number => reportA.timeStamp - reportB.timeStamp
+        );
 
         this.setState({report: {before, after}});
     };
