@@ -72,7 +72,7 @@ function getKeysNFightNodeList(wrapperNode: HTMLElement): Array<HTMLElement> {
     const keysNFightNodeList: Array<HTMLElement> = [];
 
     allNodeList.forEach((childNode: HTMLElement) => {
-        if (childNode.textContent.indexOf('Использовано ключей') === -1) {
+        if (!childNode.textContent.includes('Использовано ключей')) {
             return;
         }
 
@@ -81,7 +81,6 @@ function getKeysNFightNodeList(wrapperNode: HTMLElement): Array<HTMLElement> {
         if (dataNode) {
             keysNFightNodeList.push(dataNode);
         }
-
     });
 
     return keysNFightNodeList;
@@ -98,14 +97,22 @@ async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDa
     const keysNFightNodeList = getKeysNFightNodeList(newDocument);
 
     if (!deckValueNode || !damageValueNode) {
-        console.error('getManWarDataById: can not get nodes, id:', id, deckValueNode, damageValueNode, keysNFightNodeList);
+        console.error(
+            'getManWarDataById: can not get nodes, id:',
+            id,
+            deckValueNode,
+            damageValueNode,
+            keysNFightNodeList
+        );
 
         return null;
     }
 
     const deckValue = parseInt(deckValueNode.textContent.replace(/\D/g, ''), 10);
     const damageValue = parseInt(damageValueNode.textContent.replace(/\D/g, ''), 10);
+
     let fightCountSum = 0;
+
     let keyCountSum = 0;
 
     keysNFightNodeList.forEach((dataNode: HTMLElement) => {
@@ -138,6 +145,7 @@ async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
 
     const nodeList: Array<HTMLElement> = [];
 
+    // eslint-disable-next-line no-loops/no-loops
     for (const index of pageNumberList) {
         await waitForTime(1e3);
         nodeList.push(await getNodeFromUrl('/guild/members/page_' + index));
