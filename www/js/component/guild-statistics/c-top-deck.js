@@ -61,12 +61,13 @@ export class TopDeck extends Component<PropsType, StateType> {
 
         const deltaIndex = oldMan ? oldManList.indexOf(oldMan) - index : 0;
 
-        // const arrow = deltaIndex !== 0 ? ` - ${deltaIndex > 0 ? '⤒' : '⤓'}` : ''
-        const arrow = deltaIndex > 0 ? ' - ⇧' : '';
+        const arrow = deltaIndex !== 0 ? ` - ${deltaIndex > 0 ? '⇧' : '⇩'}` : '';
+        // const arrow = deltaIndex > 0 ? ' - ⇧' : '';
 
         return (
             <Fragment key={man.id}>
-                {index + 1}. {man.name} [{intWithSpaces(man.deckValue)}]{arrow}
+                {index + 1}. {man.name} - {intWithSpaces(man.deckValue)}
+                {arrow}
                 <br/>
             </Fragment>
         );

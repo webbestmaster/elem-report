@@ -46,7 +46,7 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
             return null;
         }
 
-        return [<br key="br"/>, <Fragment key="goblin-card">Карта гоблина</Fragment>];
+        return [<br key="br"/>, <FontColorPositive key="goblin-card">Карта гоблина</FontColorPositive>];
     }
 
     renderWarInfo = (man: GuildManDataType): Node => {
@@ -65,15 +65,12 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
         }
 
         const kpd = damageValue / (deckValue * fullFightCount * 3);
+        const FontWrapper = kpd >= 1 ? FontColorPositive : FontColorText;
 
         return (
-            <>
-                <br/>
-                <FontColorPositive>
-                    Война: ключи - {keyCount}, бои - {fightCount}, КПД - {kpd.toFixed(2)}
-                    {this.renderGoblinCard(man)}
-                </FontColorPositive>
-            </>
+            <FontWrapper>
+                Война: ключи - {keyCount}, бои - {fightCount}, КПД - {kpd.toFixed(2)}
+            </FontWrapper>
         );
     };
 
@@ -107,7 +104,9 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
                 <FontColorText>
                     {manAfter.rank}, в гильдии {manAfter.daysInGuild} д.
                 </FontColorText>
+                <br/>
                 {this.renderWarInfo(manAfter)}
+                {this.renderGoblinCard(man)}
                 <br/>
                 <br/>
             </>
