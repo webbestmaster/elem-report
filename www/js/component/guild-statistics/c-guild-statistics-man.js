@@ -5,7 +5,7 @@ import React, {Component, Fragment, type Node} from 'react';
 import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
 
 import {getManById, intWithSpaces} from './guild-statistics-helper';
-import {FontColorHeader, FontColorPositive, FontColorText} from './c-font-color';
+import {FontColorHeader, FontColorNegative, FontColorPositive, FontColorText} from './c-font-color';
 import {siteLinkPrefix} from './guild-statistics-const';
 
 type PropsType = {|
@@ -27,6 +27,14 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
                 <FontColorPositive>
                     {deckValueString} [+{intWithSpaces(deckValueDelta)}]
                 </FontColorPositive>
+            );
+        }
+
+        if (deckValueDelta < 0) {
+            return (
+                <FontColorNegative>
+                    {deckValueString} [-{intWithSpaces(Math.abs(deckValueDelta))}]
+                </FontColorNegative>
             );
         }
 
