@@ -74,7 +74,7 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
         }
 
         const kpd = damageValue / (deckValue * fullFightCount * 3);
-        const FontWrapper = kpd < 1 || fightCount < fullFightCount ? FontColorText : FontColorPositive;
+        const FontWrapper = kpd < 1 || fightCount < 6 ? FontColorText : FontColorPositive;
 
         return (
             <FontWrapper>
