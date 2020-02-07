@@ -57,6 +57,7 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
         return [<br key="br"/>, <FontColorPositive key="goblin-card">Карта гоблина</FontColorPositive>];
     }
 
+    // eslint-disable-next-line complexity
     renderWarInfo = (man: GuildManDataType): Node => {
         const {props} = this;
         const {fullFightCount} = props;
@@ -73,7 +74,7 @@ export class GuildStatisticsMan extends Component<PropsType, StateType> {
         }
 
         const kpd = damageValue / (deckValue * fullFightCount * 3);
-        const FontWrapper = kpd >= 1 ? FontColorPositive : FontColorText;
+        const FontWrapper = kpd < 1 || fightCount < fullFightCount ? FontColorText : FontColorPositive;
 
         return (
             <FontWrapper>

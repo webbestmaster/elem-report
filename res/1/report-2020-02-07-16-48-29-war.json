@@ -1,0 +1,861 @@
+{
+    "timeStamp": 1581083309775,
+    "guildLevel": 4,
+    "altarLevel": 20,
+    "guildCard": {
+        "value": 18384,
+        "level": 170
+    },
+    "manList": [
+        {
+            "id": 2212890,
+            "name": "Сэнсэй Донбасс",
+            "level": 106,
+            "rank": "Магистр",
+            "deckValue": 113305,
+            "daysInGame": 1505,
+            "avatarSrc": "/avatars/_avatar_2212890.jpg",
+            "warData": {
+                "deckValue": 180973,
+                "damageValue": 4231581,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 1448
+        },
+        {
+            "id": 5424950,
+            "name": "Ведьмак",
+            "level": 108,
+            "rank": "Десница",
+            "deckValue": 132333,
+            "daysInGame": 1024,
+            "avatarSrc": "/avatars/vedmak2.jpg",
+            "warData": {
+                "deckValue": 201903,
+                "damageValue": 4112453,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 1019
+        },
+        {
+            "id": 6796792,
+            "name": "Пушистый Пипец",
+            "level": 110,
+            "rank": "Маршал",
+            "deckValue": 147063,
+            "daysInGame": 797,
+            "avatarSrc": "/avatars/alexeirus1.jpg",
+            "warData": {
+                "deckValue": 218106,
+                "damageValue": 5618235,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 741
+        },
+        {
+            "id": 5193032,
+            "name": "Mymyi",
+            "level": 106,
+            "rank": "Маршал",
+            "deckValue": 145858,
+            "daysInGame": 1055,
+            "avatarSrc": "/cards/earth/carefree_hobbit_1_100.jpg",
+            "warData": {
+                "deckValue": 216781,
+                "damageValue": 4599981,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 888
+        },
+        {
+            "id": 7161263,
+            "name": "Mendax",
+            "level": 106,
+            "rank": "Маршал",
+            "deckValue": 119470,
+            "daysInGame": 737,
+            "avatarSrc": "/avatars/_avatar_7161263.jpg",
+            "warData": {
+                "deckValue": 187754,
+                "damageValue": 4516163,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 699
+        },
+        {
+            "id": 2907842,
+            "name": "Dame Sorciere",
+            "level": 107,
+            "rank": "Маршал",
+            "deckValue": 111630,
+            "daysInGame": 1380,
+            "avatarSrc": "/cards/air/north_witch_1_100.jpg",
+            "warData": {
+                "deckValue": 179130,
+                "damageValue": 3714897,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 1367
+        },
+        {
+            "id": 5026444,
+            "name": "Призрачная Встречная",
+            "level": 104,
+            "rank": "Маршал",
+            "deckValue": 115296,
+            "daysInGame": 1083,
+            "avatarSrc": "/avatars/prizrachnayavstrechnaya1.jpg",
+            "warData": {
+                "deckValue": 183163,
+                "damageValue": 3683234,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 748
+        },
+        {
+            "id": 7841428,
+            "name": "Melysta",
+            "level": 107,
+            "rank": "Маршал",
+            "deckValue": 130519,
+            "daysInGame": 598,
+            "avatarSrc": "/avatars/_avatar_7841428.jpg",
+            "warData": {
+                "deckValue": 199908,
+                "damageValue": 4933700,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 167
+        },
+        {
+            "id": 8299970,
+            "name": "Sashache",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 135475,
+            "daysInGame": 480,
+            "avatarSrc": "/avatars/_avatar_8299970.jpg",
+            "warData": {
+                "deckValue": 205360,
+                "damageValue": 4895281,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 395
+        },
+        {
+            "id": 7406845,
+            "name": "Дерзкая Козявка",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 123903,
+            "daysInGame": 694,
+            "avatarSrc": "/avatars/_avatar_7406845.jpg",
+            "warData": {
+                "deckValue": 192630,
+                "damageValue": 3965702,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 433
+        },
+        {
+            "id": 7406845,
+            "name": "Дерзкая Козявка",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 123903,
+            "daysInGame": 694,
+            "avatarSrc": "/avatars/_avatar_7406845.jpg",
+            "warData": {
+                "deckValue": 192630,
+                "damageValue": 3965702,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 433
+        },
+        {
+            "id": 9410071,
+            "name": "Diana I",
+            "level": 108,
+            "rank": "Архимаг",
+            "deckValue": 116412,
+            "daysInGame": 205,
+            "avatarSrc": "/cards/air/wind_fairy_1_100.jpg",
+            "warData": {
+                "deckValue": 176009,
+                "damageValue": 3666259,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 146
+        },
+        {
+            "id": 712267,
+            "name": "Брайт",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 115530,
+            "daysInGame": 1807,
+            "avatarSrc": "/avatars/_avatar_712267.jpg",
+            "warData": {
+                "deckValue": 183420,
+                "damageValue": 3393925,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 181
+        },
+        {
+            "id": 6892502,
+            "name": "Aveira",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 136858,
+            "daysInGame": 783,
+            "avatarSrc": "/avatars/_avatar_6892502.jpg",
+            "warData": {
+                "deckValue": 206881,
+                "damageValue": 5797415,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 671
+        },
+        {
+            "id": 8977964,
+            "name": "Ahad",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 108382,
+            "daysInGame": 319,
+            "avatarSrc": "/cards/water/river_naiad_1_100.jpg",
+            "warData": {
+                "deckValue": 167577,
+                "damageValue": 2852599,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 187
+        },
+        {
+            "id": 7522876,
+            "name": "Illyuziya Obmana",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 138164,
+            "daysInGame": 671,
+            "avatarSrc": "/avatars/yaidu1.jpg",
+            "warData": {
+                "deckValue": 208318,
+                "damageValue": 5129736,
+                "fightCount": 5,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 202
+        },
+        {
+            "id": 4699347,
+            "name": "Gnom Stalker",
+            "level": 109,
+            "rank": "Архимаг",
+            "deckValue": 113129,
+            "daysInGame": 1122,
+            "avatarSrc": "/cards/fire/dwarf_p_fire_1_100.jpg",
+            "warData": {
+                "deckValue": 180779,
+                "damageValue": 3038789,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 244
+        },
+        {
+            "id": 7075142,
+            "name": "Граммафон",
+            "level": 104,
+            "rank": "Архимаг",
+            "deckValue": 115371,
+            "daysInGame": 757,
+            "avatarSrc": "/cards/fire/berserk_fire_1_100.jpg",
+            "warData": {
+                "deckValue": 183245,
+                "damageValue": 3824343,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 467
+        },
+        {
+            "id": 8168173,
+            "name": "Ильтра",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 114143,
+            "daysInGame": 521,
+            "avatarSrc": "/avatars/_avatar_8168173.jpg",
+            "warData": {
+                "deckValue": 181894,
+                "damageValue": 3545994,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 384
+        },
+        {
+            "id": 1425335,
+            "name": "Reyni",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 109689,
+            "daysInGame": 1676,
+            "avatarSrc": "/cards/earth/sorceress_earth_1_100.jpg",
+            "warData": {
+                "deckValue": 176995,
+                "damageValue": 3612487,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 411
+        },
+        {
+            "id": 5579127,
+            "name": "Электронка",
+            "level": 106,
+            "rank": "Архимаг",
+            "deckValue": 117770,
+            "daysInGame": 1003,
+            "avatarSrc": "/avatars/electronka1.jpg",
+            "warData": {
+                "deckValue": 185884,
+                "damageValue": 3887733,
+                "fightCount": 5,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 285
+        },
+        {
+            "id": 5284898,
+            "name": "My Friend",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 117179,
+            "daysInGame": 1041,
+            "avatarSrc": "/avatars/myfriend1.jpg",
+            "warData": {
+                "deckValue": 185234,
+                "damageValue": 4280350,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 923
+        },
+        {
+            "id": 7466735,
+            "name": "Brawos",
+            "level": 106,
+            "rank": "Архимаг",
+            "deckValue": 110693,
+            "daysInGame": 683,
+            "avatarSrc": "/cards/earth/carefree_hobbit_1_100.jpg",
+            "warData": {
+                "deckValue": 178099,
+                "damageValue": 3837110,
+                "fightCount": 5,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 258
+        },
+        {
+            "id": 3291527,
+            "name": "Ушлый",
+            "level": 106,
+            "rank": "Архимаг",
+            "deckValue": 122936,
+            "daysInGame": 1309,
+            "avatarSrc": "/avatars/ushliy1.jpg",
+            "warData": {
+                "deckValue": 191567,
+                "damageValue": 2700517,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 202
+        },
+        {
+            "id": 7380853,
+            "name": "Democrack",
+            "level": 100,
+            "rank": "Архимаг",
+            "deckValue": 108089,
+            "daysInGame": 698,
+            "avatarSrc": "/cards/earth/elvish_scout_1_100.jpg",
+            "warData": {
+                "deckValue": 175235,
+                "damageValue": 2719499,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 495
+        },
+        {
+            "id": 7303030,
+            "name": "Paradise Lost",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 110774,
+            "daysInGame": 708,
+            "avatarSrc": "/cards/water/sorceress_water_1_100.jpg",
+            "warData": {
+                "deckValue": 178189,
+                "damageValue": 3271924,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 160
+        },
+        {
+            "id": 6781885,
+            "name": "Aleksml",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 112620,
+            "daysInGame": 801,
+            "avatarSrc": "/cards/fire/dwarf_p_fire_1_100.jpg",
+            "warData": {
+                "deckValue": 180219,
+                "damageValue": 4266529,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 453
+        },
+        {
+            "id": 7394620,
+            "name": "Orcinus",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 114568,
+            "daysInGame": 696,
+            "avatarSrc": "/cards/fire/eternal_phoenix_1_100.jpg",
+            "warData": {
+                "deckValue": 182362,
+                "damageValue": 3473625,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 314
+        },
+        {
+            "id": 186846,
+            "name": "Zhulik",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 113658,
+            "daysInGame": 1872,
+            "avatarSrc": "/avatars/_avatar_186846.jpg",
+            "warData": {
+                "deckValue": 181361,
+                "damageValue": 2911144,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 503
+        },
+        {
+            "id": 2867439,
+            "name": "Darv",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 139459,
+            "daysInGame": 1388,
+            "avatarSrc": "/avatars/darv2.jpg",
+            "warData": {
+                "deckValue": 217422,
+                "damageValue": 5653038,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 370
+        },
+        {
+            "id": 6556497,
+            "name": "Real Man",
+            "level": 98,
+            "rank": "Архимаг",
+            "deckValue": 104744,
+            "daysInGame": 841,
+            "avatarSrc": "/cards/earth/thskinned_dwarf_1_100.jpg",
+            "warData": {
+                "deckValue": 171556,
+                "damageValue": 3145115,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 545
+        },
+        {
+            "id": 8578633,
+            "name": "Mikefire",
+            "level": 100,
+            "rank": "Архимаг",
+            "deckValue": 117660,
+            "daysInGame": 415,
+            "avatarSrc": "/avatars/_avatar_8578633.jpg",
+            "warData": {
+                "deckValue": 185763,
+                "damageValue": 2796831,
+                "fightCount": 4,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 257
+        },
+        {
+            "id": 8649436,
+            "name": "Татьяна Жар Птица",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 121032,
+            "daysInGame": 396,
+            "avatarSrc": "/avatars/_avatar_8649436.jpg",
+            "warData": {
+                "deckValue": 189472,
+                "damageValue": 3104084,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 90
+        },
+        {
+            "id": 4723045,
+            "name": "Black Rekits",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 110820,
+            "daysInGame": 1119,
+            "avatarSrc": "/avatars/_avatar_4723045.jpg",
+            "warData": {
+                "deckValue": 178239,
+                "damageValue": 3883829,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 244
+        },
+        {
+            "id": 7162583,
+            "name": "Маленькая Проказница",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 110962,
+            "daysInGame": 736,
+            "avatarSrc": "/avatars/_avatar_7162583.jpg",
+            "warData": {
+                "deckValue": 178395,
+                "damageValue": 3275921,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 408
+        },
+        {
+            "id": 8276035,
+            "name": "Enotru",
+            "level": 94,
+            "rank": "Архимаг",
+            "deckValue": 118868,
+            "daysInGame": 485,
+            "avatarSrc": "/avatars/_avatar_8276035.jpg",
+            "warData": {
+                "deckValue": 187092,
+                "damageValue": 3773361,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 202
+        },
+        {
+            "id": 5806208,
+            "name": "Эска",
+            "level": 101,
+            "rank": "Архимаг",
+            "deckValue": 120679,
+            "daysInGame": 959,
+            "avatarSrc": "/avatars/eska1.jpg",
+            "warData": {
+                "deckValue": 189084,
+                "damageValue": 3588041,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 776
+        },
+        {
+            "id": 2407689,
+            "name": "Miracle",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 132199,
+            "daysInGame": 1472,
+            "avatarSrc": "/cards/air/heaven_mistress_1_100.jpg",
+            "warData": {
+                "deckValue": 201756,
+                "damageValue": 5417551,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 174
+        },
+        {
+            "id": 6744113,
+            "name": "Ne Tvoya",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 111058,
+            "daysInGame": 809,
+            "avatarSrc": "/cards/air/smashing_angel_1_100.jpg",
+            "warData": {
+                "deckValue": 178501,
+                "damageValue": 3311700,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 153
+        },
+        {
+            "id": 3752445,
+            "name": "Shining Valkyrie",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 115843,
+            "daysInGame": 1258,
+            "avatarSrc": "/avatars/shining_valkyrie2.jpg",
+            "warData": {
+                "deckValue": 183764,
+                "damageValue": 2298056,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 130
+        },
+        {
+            "id": 1516716,
+            "name": "Охотник За Солнцем",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 113004,
+            "daysInGame": 1658,
+            "avatarSrc": "/avatars/_avatar_1516716.jpg",
+            "warData": {
+                "deckValue": 180642,
+                "damageValue": 3492730,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 48
+        },
+        {
+            "id": 475333,
+            "name": "Молъфар",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 120933,
+            "daysInGame": 1842,
+            "avatarSrc": "/avatars/molfar1.jpg",
+            "warData": {
+                "deckValue": 189363,
+                "damageValue": 4999779,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 75
+        },
+        {
+            "id": 396936,
+            "name": "Юлька Мулька",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 103372,
+            "daysInGame": 1851,
+            "avatarSrc": "/cards/water/lakes_princess_1_100.jpg",
+            "warData": {
+                "deckValue": 170046,
+                "damageValue": 2598878,
+                "fightCount": 4,
+                "keyCount": 4,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 68
+        },
+        {
+            "id": 7170157,
+            "name": "Дерзкая Атаманка",
+            "level": 105,
+            "rank": "Архимаг",
+            "deckValue": 112277,
+            "daysInGame": 734,
+            "avatarSrc": "/avatars/_avatar_7170157.jpg",
+            "warData": {
+                "deckValue": 179842,
+                "damageValue": 4280203,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 32
+        },
+        {
+            "id": 6925348,
+            "name": "Volopas",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 114532,
+            "daysInGame": 779,
+            "avatarSrc": "/avatars/volopas3.jpg",
+            "warData": {
+                "deckValue": 177468,
+                "damageValue": 2830239,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 41
+        },
+        {
+            "id": 7819260,
+            "name": "Markiza Angeloff",
+            "level": 110,
+            "rank": "Архимаг",
+            "deckValue": 115039,
+            "daysInGame": 604,
+            "avatarSrc": "/avatars/_avatar_7819260.jpg",
+            "warData": {
+                "deckValue": 176812,
+                "damageValue": 4057139,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 18
+        },
+        {
+            "id": 2300932,
+            "name": "Пипец Дерзкая",
+            "level": 102,
+            "rank": "Архимаг",
+            "deckValue": 106257,
+            "daysInGame": 1490,
+            "avatarSrc": "/cards/fire/sorceress_fire_1_100.jpg",
+            "warData": {
+                "deckValue": 168366,
+                "damageValue": 2792768,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 32
+        },
+        {
+            "id": 4723379,
+            "name": "Всёпожрал",
+            "level": 103,
+            "rank": "Архимаг",
+            "deckValue": 96240,
+            "daysInGame": 1119,
+            "avatarSrc": "/cards/earth/sabretoothed_tiger_1_100.jpg",
+            "warData": {
+                "deckValue": 162201,
+                "damageValue": 2681568,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 18
+        },
+        {
+            "id": 861651,
+            "name": "Полуночь",
+            "level": 107,
+            "rank": "Архимаг",
+            "deckValue": 124100,
+            "daysInGame": 1783,
+            "avatarSrc": "/avatars/polunoch3.jpg",
+            "warData": {
+                "deckValue": 190824,
+                "damageValue": 4587087,
+                "fightCount": 6,
+                "keyCount": 6,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 12
+        },
+        {
+            "id": 706862,
+            "name": "Сантьяга",
+            "level": 101,
+            "rank": "Архимаг",
+            "deckValue": 101055,
+            "daysInGame": 1808,
+            "avatarSrc": "/cards/air/war_archangel_1_100.jpg?2",
+            "warData": {
+                "deckValue": 158195,
+                "damageValue": 3343294,
+                "fightCount": 5,
+                "keyCount": 5,
+                "hasGoblinCard": true
+            },
+            "daysInGuild": 4
+        }
+    ]
+}
