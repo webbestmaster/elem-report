@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "Elem Report Guild",
+    "version": "0.1",
+    "icons": {
+        "16": "elem-16x16.png",
+        "32": "elem-32x32.png",
+        "48": "elem-48x48.png",
+        "128": "elem-128x128.png",
+        "144": "elem-144x144.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://mailru.elem.mobi/?guild-report=*",
+                "https://elem.mobi/?guild-report=*"
+            ],
+            "js": [
+                "main.js"
+            ]
+        }
+    ]
+}

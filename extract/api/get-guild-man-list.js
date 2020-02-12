@@ -139,7 +139,8 @@ async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDa
     return manWarData;
 }
 
-async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
+// eslint-disable-next-line sonarjs/cognitive-complexity
+async function getManShortDataList(guildId?: string): Promise<Array<GuildManShortDataType>> {
     const pageNumberList = [1, 2, 3, 4, 5];
     // const pageNumberList = [1];
 
@@ -148,7 +149,7 @@ async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
     // eslint-disable-next-line no-loops/no-loops
     for (const index of pageNumberList) {
         await waitForTime(1e3);
-        nodeList.push(await getNodeFromUrl('/guild/members/page_' + index));
+        nodeList.push(await getNodeFromUrl(`/guild${guildId ? '/' + guildId : ''}/members/page_${index}`));
     }
 
     const idList: Array<GuildManShortDataType> = [];
@@ -156,22 +157,27 @@ async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
     nodeList.forEach((html: HTMLElement) => {
         const linkList = html.querySelectorAll('.bl.tdn.small.c_dblue.ptb5');
 
+        // eslint-disable-next-line complexity
         linkList.forEach((link: HTMLElement) => {
             const href = link.getAttribute('href') || '';
             const id = parseInt(href.replace(/\D/g, ''), 10);
             const daysInGuildNode = link.querySelector('.fr.c_cc .c_99');
 
-            if (!daysInGuildNode) {
+            // you can not get daysInGuildNode from man of another guild
+            if (!daysInGuildNode && !guildId) {
                 console.error('getManShortDataList: can not get daysInGuildNode');
-                return;
             }
 
-            const daysInGuildText = daysInGuildNode.textContent.replace(/\D/gi, '');
-
+            const daysInGuildText = daysInGuildNode ? daysInGuildNode.textContent.replace(/\D/gi, '') : '';
             const daysInGuild = parseInt(daysInGuildText, 10);
 
-            if (isNotNumber(daysInGuild)) {
+            // you can not get daysInGuildNode from man of another guild
+            if (isNotNumber(daysInGuild) && !guildId) {
                 console.error('getManShortDataList: daysInGuild should be a number');
+            }
+
+            if (idList.find((manInList: GuildManShortDataType): boolean => manInList.id === id)) {
+                return;
             }
 
             idList.push({
@@ -184,8 +190,8 @@ async function getManShortDataList(): Promise<Array<GuildManShortDataType>> {
     return idList;
 }
 
-export async function getManList(periodName: PeriodNameType): Promise<Array<GuildManDataType>> {
-    const manShortDataList = await getManShortDataList();
+export async function getManList(periodName: PeriodNameType, guildId?: string): Promise<Array<GuildManDataType>> {
+    const manShortDataList = await getManShortDataList(guildId);
     const manShortDataListLength = manShortDataList.length;
 
     console.log('manShortDataList', manShortDataList);
