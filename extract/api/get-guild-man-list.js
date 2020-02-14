@@ -14,6 +14,8 @@ import {isNotNumber} from '../../www/js/lib/is';
 
 // eslint-disable-next-line complexity, max-statements
 async function getManDataById(id: number): Promise<NullableType<GuildManDataType>> {
+    await waitForTime(1.2e3);
+
     // $FlowFixMe
     const newDocument = await getNodeFromUrl(`/user/${id}/`);
     const profileSelectorDefault = '#gameBody';
@@ -88,8 +90,10 @@ function getKeysNFightNodeList(wrapperNode: HTMLElement): Array<HTMLElement> {
 
 // бои первая цифра, ключи - вторая
 
-// eslint-disable-next-line complexity
+// eslint-disable-next-line complexity, max-statements
 async function getManWarDataById(id: number): Promise<NullableType<GuildManWarDataType>> {
+    await waitForTime(1.2e3);
+
     const newDocument = await getNodeFromUrl(`/gwprofile/${id}/`);
     const deckValueNode = newDocument.querySelector('.c_orange.mt10.cntr.small');
     const damageValueIconNode = newDocument.querySelector('img[src="/img/ico16-battle-sum.png"]');
@@ -202,10 +206,8 @@ export async function getManList(periodName: PeriodNameType, guildId?: string): 
     for (const manShortData of manShortDataList) {
         const {id, daysInGuild} = manShortData;
 
-        await waitForTime(1.2e3);
         const manData = await getManDataById(id);
 
-        await waitForTime(1.2e3);
         const warData = periodName === periodNameMap.war ? await getManWarDataById(id) : null;
 
         if (manData) {
