@@ -3,10 +3,10 @@
 import {getNodeFromUrl} from '../util/get-data';
 import type {
     GuildManDataType,
+    GuildManShortDataType,
     GuildManWarDataType,
     NullableType,
     PeriodNameType,
-    GuildManShortDataType,
 } from '../extract-type';
 import {waitForTime} from '../util/time';
 import {periodNameMap} from '../extract-const';
