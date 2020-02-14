@@ -202,10 +202,10 @@ export async function getManList(periodName: PeriodNameType, guildId?: string): 
     for (const manShortData of manShortDataList) {
         const {id, daysInGuild} = manShortData;
 
-        await waitForTime(1.5e3);
+        await waitForTime(1.2e3);
         const manData = await getManDataById(id);
 
-        await waitForTime(1.5e3);
+        await waitForTime(1.2e3);
         const warData = periodName === periodNameMap.war ? await getManWarDataById(id) : null;
 
         if (manData) {
