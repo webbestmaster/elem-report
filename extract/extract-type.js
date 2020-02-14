@@ -41,3 +41,14 @@ export type ReportDataType = {|
     +guildCard: NullableType<GuildCardDataType>,
     +manList: Array<GuildManDataType>,
 |};
+
+export type GuildDataType = {|
+    +report: ReportDataType,
+    +guildId: string,
+    +name: string,
+|};
+
+export type GuildsDataType = {|
+    +timeStamp: number,
+    +guildList: Array<GuildDataType>,
+|};

@@ -14,6 +14,7 @@ flow-typed/npm
 /extract-result
 /extract-war-result
 /extract-guild-result
+/extract-top-10-guilds
 
 # example
 

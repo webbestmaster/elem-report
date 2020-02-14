@@ -13,7 +13,7 @@ const {
 
 const webpackConfig = {
     // entry: ['./www/css/root.scss', './www/js/root.js'],
-    entry: ['./extract/extract-guild.js'],
+    entry: ['./extract/extract-top-10-guilds.js'],
     output: {
         path: path.join(cwd, pathToDist),
         publicPath: `${isDevelopment || isBuildServer ? '' : pathToStaticFileFolder}/`,
