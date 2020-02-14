@@ -46,9 +46,10 @@ export type GuildDataType = {|
     +report: ReportDataType,
     +guildId: string,
     +name: string,
+    +logoSrc: string,
 |};
 
-export type GuildsDataType = {|
+export type GuildsListDataType = {|
     +timeStamp: number,
     +guildList: Array<GuildDataType>,
 |};

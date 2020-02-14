@@ -6,15 +6,41 @@ import {isNotString} from '../www/js/lib/is';
 
 import {saveDataAsJsonFile} from './util/save-file';
 import {getTime, timeToFileNameString} from './util/time';
-import type {GuildsDataType, ReportDataType} from './extract-type';
+import type {GuildsListDataType, ReportDataType} from './extract-type';
 import {getGuildData} from './util/get-guild-data';
 import {getNodeFromUrl} from './util/get-data';
 
+type ShortGuildDataType = {|
+    +guildId: string,
+    +name: string,
+    +logoSrc: string,
+|};
+
 (async () => {
     const page = await getNodeFromUrl('/ratings/guild/combat/');
-    const shortGuildDataList: Array<{+guildId: string, +name: string}> = [
-        ...page.querySelectorAll('.user a[href^="/guild/"]'),
-    ].map((linkNode: HTMLElement): {+guildId: string, +name: string} => {
+
+    const nodeList = [...page.querySelectorAll('table.ulist tr')];
+
+    console.log(nodeList);
+
+    // remove 'header'
+    nodeList.shift();
+
+    console.log(nodeList);
+
+    const shortGuildDataList: Array<ShortGuildDataType> = nodeList.map((rowNode: HTMLElement): ShortGuildDataType => {
+        const linkNode = rowNode.querySelector('.user a[href^="/guild/"]');
+        const logoNode = rowNode.querySelector('img[src^="/img/gs/"]');
+
+        if (!linkNode || !logoNode) {
+            console.error('can not get linkNode or logoNode');
+            return {
+                guildId: 'N/A',
+                name: 'N/A',
+                logoSrc: 'N/A',
+            };
+        }
+
         const href = linkNode.getAttribute('href');
 
         if (isNotString(href)) {
@@ -22,29 +48,28 @@ import {getNodeFromUrl} from './util/get-data';
             return {
                 guildId: 'N/A',
                 name: 'N/A',
+                logoSrc: 'N/A',
             };
         }
 
         return {
+            logoSrc: logoNode.getAttribute('src') || 'N/A',
             guildId: href.replace(/\D/g, ''),
             name: linkNode.textContent,
         };
     });
 
-    const guildsData: GuildsDataType = {
+    const guildsData: GuildsListDataType = {
         timeStamp: getTime(),
         guildList: [],
     };
 
     // eslint-disable-next-line no-loops/no-loops
     for (const shortGuildData of shortGuildDataList) {
-        if (shortGuildDataList.indexOf(shortGuildData) < 3) {
-            guildsData.guildList.push({
-                guildId: shortGuildData.guildId,
-                name: shortGuildData.name,
-                report: await getGuildData(shortGuildData.guildId),
-            });
-        }
+        guildsData.guildList.push({
+            ...shortGuildData,
+            report: await getGuildData(shortGuildData.guildId),
+        });
     }
 
     console.log(guildsData);

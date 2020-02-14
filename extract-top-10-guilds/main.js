@@ -80,6 +80,16 @@
             };
         };
     },
+    function(t, e) {
+        t.exports = function(t, e, r) {
+            return (
+                e in t
+                    ? Object.defineProperty(t, e, {value: r, enumerable: !0, configurable: !0, writable: !0})
+                    : (t[e] = r),
+                t
+            );
+        };
+    },
     function(t, e, r) {
         var n = r(7),
             o = r(8),
@@ -94,16 +104,6 @@
             a = r(12);
         t.exports = function(t, e) {
             return n(t) || o(t, e) || a();
-        };
-    },
-    function(t, e) {
-        t.exports = function(t, e, r) {
-            return (
-                e in t
-                    ? Object.defineProperty(t, e, {value: r, enumerable: !0, configurable: !0, writable: !0})
-                    : (t[e] = r),
-                t
-            );
         };
     },
     function(t, e, r) {
@@ -177,8 +177,8 @@
             var d = Object.getPrototypeOf,
                 y = d && d(d(S([])));
             y && y !== e && r.call(y, o) && (h = y);
-            var v = (p.prototype = l.prototype = Object.create(h));
-            function g(t) {
+            var g = (p.prototype = l.prototype = Object.create(h));
+            function v(t) {
                 ['next', 'throw', 'return'].forEach(function(e) {
                     t[e] = function(t) {
                         return this._invoke(e, t);
@@ -276,13 +276,13 @@
                         return (a.next = a);
                     }
                 }
-                return {next: L};
+                return {next: j};
             }
-            function L() {
+            function j() {
                 return {value: void 0, done: !0};
             }
             return (
-                (f.prototype = v.constructor = p),
+                (f.prototype = g.constructor = p),
                 (p.constructor = f),
                 (p[i] = f.displayName = 'GeneratorFunction'),
                 (t.isGeneratorFunction = function(t) {
@@ -294,14 +294,14 @@
                         Object.setPrototypeOf
                             ? Object.setPrototypeOf(t, p)
                             : ((t.__proto__ = p), i in t || (t[i] = 'GeneratorFunction')),
-                        (t.prototype = Object.create(v)),
+                        (t.prototype = Object.create(g)),
                         t
                     );
                 }),
                 (t.awrap = function(t) {
                     return {__await: t};
                 }),
-                g(m.prototype),
+                v(m.prototype),
                 (m.prototype[a] = function() {
                     return this;
                 }),
@@ -314,12 +314,12 @@
                               return t.done ? t.value : a.next();
                           });
                 }),
-                g(v),
-                (v[i] = 'Generator'),
-                (v[o] = function() {
+                v(g),
+                (g[i] = 'Generator'),
+                (g[o] = function() {
                     return this;
                 }),
-                (v.toString = function() {
+                (g.toString = function() {
                     return '[object Generator]';
                 }),
                 (t.keys = function(t) {
@@ -517,12 +517,14 @@
             o = r.n(n),
             a = r(2),
             i = r.n(a),
-            c = r(1),
-            u = r.n(c);
-        function s(t) {
+            c = r(3),
+            u = r.n(c),
+            s = r(1),
+            l = r.n(s);
+        function f(t) {
             return 'number' != typeof t || Number.isNaN(t);
         }
-        function l(t, e) {
+        function p(t, e) {
             var r = 'data:application/octet-stream,' + encodeURIComponent(JSON.stringify(e, null, 4) + '\n');
             return fetch(r)
                 .then(function(t) {
@@ -550,24 +552,22 @@
                     return console.error(t.message), t;
                 });
         }
-        var f = r(3),
-            p = r.n(f),
-            h = 60 * new Date().getTimezoneOffset() * 1e3;
-        function d() {
-            return new Date().getTime() + h;
+        var h = r(4),
+            d = r.n(h),
+            y = 60 * new Date().getTimezoneOffset() * 1e3;
+        function g() {
+            return new Date().getTime() + y;
         }
-        function y(t) {
+        function v(t) {
             return new Promise(function(e) {
                 setTimeout(e, t);
             });
         }
-        var v = r(4),
-            g = r.n(v);
         function m(t) {
             return b.apply(this, arguments);
         }
         function b() {
-            return (b = u()(
+            return (b = l()(
                 o.a.mark(function t(e) {
                     var r, n, a;
                     return o.a.wrap(function(t) {
@@ -608,7 +608,7 @@
                 var r = null != arguments[e] ? arguments[e] : {};
                 e % 2
                     ? x(Object(r), !0).forEach(function(e) {
-                          g()(t, e, r[e]);
+                          i()(t, e, r[e]);
                       })
                     : Object.getOwnPropertyDescriptors
                     ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(r))
@@ -622,9 +622,9 @@
             return S.apply(this, arguments);
         }
         function S() {
-            return (S = u()(
+            return (S = l()(
                 o.a.mark(function t(e) {
-                    var r, n, a, i, c, u, s, l, f, p, h, d, y, v, g, b;
+                    var r, n, a, i, c, u, s, l, f, p, h, d, y, g, v, b;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
@@ -659,20 +659,20 @@
                                         (h = f.getAttribute('src') || ''),
                                         (d = parseInt(c.textContent.replace(/\D/g, ''), 10)),
                                         (y = u.textContent.trim()),
-                                        (v = parseInt(s.textContent.replace(/\D/g, ''), 10)),
-                                        (g = parseInt(l.textContent.replace(/\D/g, ''), 10)),
+                                        (g = parseInt(s.textContent.replace(/\D/g, ''), 10)),
+                                        (v = parseInt(l.textContent.replace(/\D/g, ''), 10)),
                                         (b = {
                                             id: e,
                                             name: p,
                                             level: d,
                                             rank: y,
-                                            deckValue: v,
-                                            daysInGame: g,
+                                            deckValue: g,
+                                            daysInGame: v,
                                             avatarSrc: h,
                                             warData: null,
                                             daysInGuild: n,
                                         }),
-                                        p && d && y && v && g && h)
+                                        p && d && y && g && v && h)
                                     ) {
                                         t.next = 27;
                                         break;
@@ -692,8 +692,8 @@
                 }),
             )).apply(this, arguments);
         }
-        function L(t) {
-            var e = i()(t.querySelectorAll('.small.c_99.mt10')),
+        function j(t) {
+            var e = u()(t.querySelectorAll('.small.c_99.mt10')),
                 r = [];
             return (
                 e.forEach(function(t) {
@@ -705,13 +705,13 @@
                 r
             );
         }
-        function k(t) {
-            return j.apply(this, arguments);
+        function L(t) {
+            return k.apply(this, arguments);
         }
-        function j() {
-            return (j = u()(
+        function k() {
+            return (k = l()(
                 o.a.mark(function t(e) {
-                    var r, n, a, i, c, u, l, f, h, d, y;
+                    var r, n, a, i, c, u, s, l, p, h, y;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
@@ -723,7 +723,7 @@
                                         (n = r.querySelector('.c_orange.mt10.cntr.small')),
                                         (a = r.querySelector('img[src="/img/ico16-battle-sum.png"]')),
                                         (i = a ? a.parentElement : null),
-                                        (c = L(r)),
+                                        (c = j(r)),
                                         n && i)
                                     ) {
                                         t.next = 10;
@@ -736,9 +736,9 @@
                                 case 10:
                                     if (
                                         ((u = parseInt(n.textContent.replace(/\D/g, ''), 10)),
-                                        (l = parseInt(i.textContent.replace(/\D/g, ''), 10)),
-                                        (f = 0),
-                                        (h = 0),
+                                        (s = parseInt(i.textContent.replace(/\D/g, ''), 10)),
+                                        (l = 0),
+                                        (p = 0),
                                         c.forEach(function(t) {
                                             var e = t.textContent
                                                     .trim()
@@ -746,20 +746,20 @@
                                                     .map(function(t) {
                                                         return parseInt(t.trim(), 10);
                                                     }),
-                                                r = p()(e, 2),
+                                                r = d()(e, 2),
                                                 n = r[0],
                                                 o = r[1];
-                                            (f += n), (h += o);
+                                            (l += n), (p += o);
                                         }),
-                                        (d = r.innerHTML.indexOf('<span class="stat">6000</span>') > 0),
+                                        (h = r.innerHTML.indexOf('<span class="stat">6000</span>') > 0),
                                         (y = {
                                             deckValue: u,
-                                            damageValue: l,
-                                            fightCount: f,
-                                            keyCount: h,
-                                            hasGoblinCard: d,
+                                            damageValue: s,
+                                            fightCount: l,
+                                            keyCount: p,
+                                            hasGoblinCard: h,
                                         }),
-                                        !s(u) && !s(l))
+                                        !f(u) && !f(s))
                                     ) {
                                         t.next = 21;
                                         break;
@@ -779,11 +779,11 @@
                 }),
             )).apply(this, arguments);
         }
-        function _(t) {
-            return E.apply(this, arguments);
+        function E(t) {
+            return _.apply(this, arguments);
         }
-        function E() {
-            return (E = u()(
+        function _() {
+            return (_ = l()(
                 o.a.mark(function t(e) {
                     var r, n, a, i, c;
                     return o.a.wrap(function(t) {
@@ -796,7 +796,7 @@
                                         t.next = 15;
                                         break;
                                     }
-                                    return (i = a[n]), (t.next = 7), y(1e3);
+                                    return (i = a[n]), (t.next = 7), v(1e3);
                                 case 7:
                                     return (
                                         (t.t0 = r),
@@ -821,7 +821,7 @@
                                                     console.error('getManShortDataList: can not get daysInGuildNode');
                                                 var a = o ? o.textContent.replace(/\D/gi, '') : '',
                                                     i = parseInt(a, 10);
-                                                s(i) &&
+                                                f(i) &&
                                                     !e &&
                                                     console.error(
                                                         'getManShortDataList: daysInGuild should be a number',
@@ -841,19 +841,19 @@
                 }),
             )).apply(this, arguments);
         }
-        function I(t, e) {
+        function P(t, e) {
             return D.apply(this, arguments);
         }
         function D() {
-            return (D = u()(
+            return (D = l()(
                 o.a.mark(function t(e, r) {
-                    var n, a, i, c, u, s, l, f, p, h, d, v, g;
+                    var n, a, i, c, u, s, l, f, p, h, d, y, g;
                     return o.a.wrap(
                         function(t) {
                             for (;;)
                                 switch ((t.prev = t.next)) {
                                     case 0:
-                                        return (t.next = 2), _(r);
+                                        return (t.next = 2), E(r);
                                     case 2:
                                         (n = t.sent),
                                             (a = n.length),
@@ -869,17 +869,17 @@
                                             t.next = 34;
                                             break;
                                         }
-                                        return (p = f.value), (h = p.id), (d = p.daysInGuild), (t.next = 16), y(1500);
+                                        return (p = f.value), (h = p.id), (d = p.daysInGuild), (t.next = 16), v(1500);
                                     case 16:
                                         return (t.next = 18), O(h);
                                     case 18:
-                                        return (v = t.sent), (t.next = 21), y(1500);
+                                        return (y = t.sent), (t.next = 21), v(1500);
                                     case 21:
                                         if ('war' !== e) {
                                             t.next = 27;
                                             break;
                                         }
-                                        return (t.next = 24), k(h);
+                                        return (t.next = 24), L(h);
                                     case 24:
                                         (t.t0 = t.sent), (t.next = 28);
                                         break;
@@ -887,8 +887,8 @@
                                         t.t0 = null;
                                     case 28:
                                         (g = t.t0),
-                                            v
-                                                ? i.push(w({}, v, {warData: g, daysInGuild: d}))
+                                            y
+                                                ? i.push(w({}, y, {warData: g, daysInGuild: d}))
                                                 : console.error('getManList: can not get man with manShortData:', p),
                                             console.log(
                                                 'getManList progress:',
@@ -931,23 +931,23 @@
                 }),
             )).apply(this, arguments);
         }
-        function P(t) {
+        function I(t) {
             return A.apply(this, arguments);
         }
         function A() {
-            return (A = u()(
+            return (A = l()(
                 o.a.mark(function t(e) {
                     var r, n, a, i;
                     return o.a.wrap(function(t) {
                         for (;;)
                             switch ((t.prev = t.next)) {
                                 case 0:
-                                    return (r = 0), (n = 0), (a = {value: 0, level: 0}), (t.next = 5), I('usual', e);
+                                    return (r = 0), (n = 0), (a = {value: 0, level: 0}), (t.next = 5), P('usual', e);
                                 case 5:
                                     return (
                                         (i = t.sent),
                                         t.abrupt('return', {
-                                            timeStamp: d(),
+                                            timeStamp: g(),
                                             guildLevel: r,
                                             altarLevel: n,
                                             guildCard: a,
@@ -962,9 +962,36 @@
                 }),
             )).apply(this, arguments);
         }
-        u()(
+        function N(t, e) {
+            var r = Object.keys(t);
+            if (Object.getOwnPropertySymbols) {
+                var n = Object.getOwnPropertySymbols(t);
+                e &&
+                    (n = n.filter(function(e) {
+                        return Object.getOwnPropertyDescriptor(t, e).enumerable;
+                    })),
+                    r.push.apply(r, n);
+            }
+            return r;
+        }
+        function q(t) {
+            for (var e = 1; e < arguments.length; e++) {
+                var r = null != arguments[e] ? arguments[e] : {};
+                e % 2
+                    ? N(Object(r), !0).forEach(function(e) {
+                          i()(t, e, r[e]);
+                      })
+                    : Object.getOwnPropertyDescriptors
+                    ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(r))
+                    : N(Object(r)).forEach(function(e) {
+                          Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(r, e));
+                      });
+            }
+            return t;
+        }
+        l()(
             o.a.mark(function t() {
-                var e, r, n, a, c, u, s, f, p;
+                var e, r, n, a, i, c, s, l, f, h;
                 return o.a.wrap(
                     function(t) {
                         for (;;)
@@ -973,75 +1000,92 @@
                                     return (t.next = 2), m('/ratings/guild/combat/');
                                 case 2:
                                     (e = t.sent),
-                                        (r = i()(e.querySelectorAll('.user a[href^="/guild/"]')).map(function(t) {
-                                            var e = t.getAttribute('href');
-                                            return 'string' != typeof e
-                                                ? (console.error('can not detect href of', t),
-                                                  {guildId: 'N/A', name: 'N/A'})
-                                                : {guildId: e.replace(/\D/g, ''), name: t.textContent};
+                                        (r = u()(e.querySelectorAll('table.ulist tr'))),
+                                        console.log(r),
+                                        r.shift(),
+                                        console.log(r),
+                                        (n = r.map(function(t) {
+                                            var e = t.querySelector('.user a[href^="/guild/"]'),
+                                                r = t.querySelector('img[src^="/img/gs/"]');
+                                            if (!e || !r)
+                                                return (
+                                                    console.error('can not get linkNode or logoNode'),
+                                                    {guildId: 'N/A', name: 'N/A', logoSrc: 'N/A'}
+                                                );
+                                            var n = e.getAttribute('href');
+                                            return 'string' != typeof n
+                                                ? (console.error('can not detect href of', e),
+                                                  {guildId: 'N/A', name: 'N/A', logoSrc: 'N/A'})
+                                                : {
+                                                      logoSrc: r.getAttribute('src') || 'N/A',
+                                                      guildId: n.replace(/\D/g, ''),
+                                                      name: e.textContent,
+                                                  };
                                         })),
-                                        (n = {timeStamp: d(), guildList: []}),
-                                        (a = !0),
+                                        (a = {timeStamp: g(), guildList: []}),
+                                        (i = !0),
                                         (c = !1),
-                                        (u = void 0),
-                                        (t.prev = 8),
-                                        (s = r[Symbol.iterator]());
-                                case 10:
-                                    if ((a = (f = s.next()).done)) {
-                                        t.next = 24;
+                                        (s = void 0),
+                                        (t.prev = 12),
+                                        (l = n[Symbol.iterator]());
+                                case 14:
+                                    if ((i = (f = l.next()).done)) {
+                                        t.next = 30;
                                         break;
                                     }
-                                    if (((p = f.value), !(r.indexOf(p) < 3))) {
-                                        t.next = 21;
+                                    if (((h = f.value), !(n.indexOf(h) < 3))) {
+                                        t.next = 27;
                                         break;
                                     }
                                     return (
-                                        (t.t0 = n.guildList),
-                                        (t.t1 = p.guildId),
-                                        (t.t2 = p.name),
-                                        (t.next = 18),
-                                        P(p.guildId)
+                                        (t.t0 = a.guildList),
+                                        (t.t1 = q),
+                                        (t.t2 = {}),
+                                        (t.t3 = h),
+                                        (t.next = 23),
+                                        I(h.guildId)
                                     );
-                                case 18:
-                                    (t.t3 = t.sent),
-                                        (t.t4 = {guildId: t.t1, name: t.t2, report: t.t3}),
-                                        t.t0.push.call(t.t0, t.t4);
-                                case 21:
-                                    (a = !0), (t.next = 10);
+                                case 23:
+                                    (t.t4 = t.sent),
+                                        (t.t5 = {report: t.t4}),
+                                        (t.t6 = (0, t.t1)(t.t2, t.t3, t.t5)),
+                                        t.t0.push.call(t.t0, t.t6);
+                                case 27:
+                                    (i = !0), (t.next = 14);
                                     break;
-                                case 24:
-                                    t.next = 30;
-                                    break;
-                                case 26:
-                                    (t.prev = 26), (t.t5 = t.catch(8)), (c = !0), (u = t.t5);
                                 case 30:
-                                    (t.prev = 30), (t.prev = 31), a || null == s.return || s.return();
-                                case 33:
-                                    if (((t.prev = 33), !c)) {
-                                        t.next = 36;
+                                    t.next = 36;
+                                    break;
+                                case 32:
+                                    (t.prev = 32), (t.t7 = t.catch(12)), (c = !0), (s = t.t7);
+                                case 36:
+                                    (t.prev = 36), (t.prev = 37), i || null == l.return || l.return();
+                                case 39:
+                                    if (((t.prev = 39), !c)) {
+                                        t.next = 42;
                                         break;
                                     }
-                                    throw u;
-                                case 36:
-                                    return t.finish(33);
-                                case 37:
-                                    return t.finish(30);
-                                case 38:
+                                    throw s;
+                                case 42:
+                                    return t.finish(39);
+                                case 43:
+                                    return t.finish(36);
+                                case 44:
                                     return (
-                                        console.log(n),
-                                        (t.next = 41),
-                                        l(
+                                        console.log(a),
+                                        (t.next = 47),
+                                        p(
                                             'report-top-10-guild-' +
-                                                ((o = n.timeStamp),
-                                                new Date(o - h)
+                                                ((o = a.timeStamp),
+                                                new Date(o - y)
                                                     .toISOString()
                                                     .replace(/:/g, '-')
                                                     .replace(/\.\d{3}Z$/, '')
                                                     .replace('T', '-')),
-                                            n,
+                                            a,
                                         )
                                     );
-                                case 41:
+                                case 47:
                                 case 'end':
                                     return t.stop();
                             }
@@ -1050,8 +1094,8 @@
                     t,
                     null,
                     [
-                        [8, 26, 30, 38],
-                        [31, , 33, 37],
+                        [12, 32, 36, 44],
+                        [37, , 39, 43],
                     ],
                 );
             }),

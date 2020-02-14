@@ -187,10 +187,7 @@ async function getManShortDataList(guildId?: string): Promise<Array<GuildManShor
         });
     });
 
-    // TODO: return full list
-    // return idList;
-
-    return [idList[0], idList[1], idList[2]];
+    return idList;
 }
 
 export async function getManList(periodName: PeriodNameType, guildId?: string): Promise<Array<GuildManDataType>> {

@@ -48,7 +48,7 @@ export class TopDeck extends Component<PropsType, StateType> {
         this.setState({bbCode: currentBbCode});
     }
 
-    getReport(): {|before: ReportDataType, +after: ReportDataType|} {
+    getReport(): {|+before: ReportDataType, +after: ReportDataType|} {
         const {props} = this;
         const {report} = props;
         const {before, after} = report;

@@ -2,12 +2,13 @@
 
 import React, {Component, type Node} from 'react';
 
-import {type ReportDataType} from '../../../../../extract/extract-type';
+import {type ReportDataType, type GuildsListDataType} from '../../../../../extract/extract-type';
 
 import type {NullableType} from '../../../lib/type';
 import {getFileAsJson} from '../../../lib/file';
 import {GuildStatistics} from '../../../component/guild-statistics/c-guild-statistics';
 import {TopDeck} from '../../../component/guild-statistics/c-top-deck';
+import {GuildsListData} from '../../../component/guild-statistics/c-guilds-list-data';
 
 // import homeStyle from './home.scss';
 
@@ -17,6 +18,10 @@ type StateType = {|
     +report: {|
         +before: NullableType<ReportDataType>,
         +after: NullableType<ReportDataType>,
+    |},
+    +guildsReport: {|
+        +before: NullableType<GuildsListDataType>,
+        +after: NullableType<GuildsListDataType>,
     |},
 |};
 
@@ -29,6 +34,10 @@ export class Home extends Component<PropsType, StateType> {
                 before: null,
                 after: null,
             },
+            guildsReport: {
+                before: null,
+                after: null,
+            },
         };
     }
 
@@ -37,7 +46,7 @@ export class Home extends Component<PropsType, StateType> {
         console.log('---> Component Home did mount');
     }
 
-    handleTwoFileChange = async (evt: SyntheticEvent<HTMLInputElement>) => {
+    handleTwoFileReportChange = async (evt: SyntheticEvent<HTMLInputElement>) => {
         const {currentTarget} = evt;
         const {files} = currentTarget;
 
@@ -51,7 +60,21 @@ export class Home extends Component<PropsType, StateType> {
         this.setState({report: {before, after}});
     };
 
-    render(): Node {
+    handleTwoFileGuildsReportChange = async (evt: SyntheticEvent<HTMLInputElement>) => {
+        const {currentTarget} = evt;
+        const {files} = currentTarget;
+
+        const [file1, file2] = files;
+        const report1 = await getFileAsJson<GuildsListDataType>(file1);
+        const report2 = file2 ? await getFileAsJson<GuildsListDataType>(file2) : JSON.parse(JSON.stringify(report1));
+        const [before, after] = [report1, report2].sort(
+            (reportA: GuildsListDataType, reportB: GuildsListDataType): number => reportA.timeStamp - reportB.timeStamp
+        );
+
+        this.setState({guildsReport: {before, after}});
+    };
+
+    renderReport(): Node {
         const {state} = this;
         const {report} = state;
         const {before, after} = report;
@@ -60,11 +83,38 @@ export class Home extends Component<PropsType, StateType> {
             <>
                 <h1>Reporter</h1>
                 <br/>
-                <input multiple onChange={this.handleTwoFileChange} type="file"/>
+                <input multiple onChange={this.handleTwoFileReportChange} type="file"/>
                 <hr/>
                 {before && after ? <GuildStatistics report={{before, after}}/> : null}
                 <hr/>
                 {before && after ? <TopDeck report={{before, after}}/> : null}
+            </>
+        );
+    }
+
+    renderGuildsReport(): Node {
+        const {state} = this;
+        const {guildsReport} = state;
+        const {before, after} = guildsReport;
+
+        return (
+            <>
+                <h1>Top 10 Guild</h1>
+                <br/>
+                <input multiple onChange={this.handleTwoFileGuildsReportChange} type="file"/>
+                <hr/>
+                {before && after ? <GuildsListData report={{before, after}}/> : null}
+            </>
+        );
+    }
+
+    render(): Node {
+        return (
+            <>
+                {this.renderReport()}
+                <hr/>
+                {this.renderGuildsReport()}
+                <hr/>
             </>
         );
     }

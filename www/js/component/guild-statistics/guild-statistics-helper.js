@@ -1,6 +1,11 @@
 // @flow
 
-import type {GuildManDataType, ReportDataType} from '../../../../extract/extract-type';
+import type {
+    GuildDataType,
+    GuildManDataType,
+    GuildsListDataType,
+    ReportDataType,
+} from '../../../../extract/extract-type';
 
 import {siteLinkPrefix} from './guild-statistics-const';
 
@@ -64,6 +69,10 @@ export function getLeaveMemberList(before: ReportDataType, after: ReportDataType
 
 export function getManById(manId: number, report: ReportDataType): GuildManDataType | void {
     return report.manList.find((man: GuildManDataType): boolean => man.id === manId);
+}
+
+export function getGuildById(guildId: string, guildListData: GuildsListDataType): GuildDataType | void {
+    return guildListData.guildList.find((guild: GuildDataType): boolean => guild.guildId === guildId);
 }
 
 export function htmlToBbCode(html: string): string {
