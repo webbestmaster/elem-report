@@ -105,7 +105,8 @@ export class GuildsListData extends Component<PropsType, StateType> {
         return (
             <>
                 <div className={guildStatisticsStyle.guild_statistics__wrapper} ref={state.wrapperRef}>
-                    <FontColorHeader isBold>Статистика по гильдиям за период</FontColorHeader>
+                    {/* <FontColorHeader isBold>Статистика по гильдиям за период</FontColorHeader>*/}
+                    <FontColorHeader isBold>Средняя колода топ-10 гильдий</FontColorHeader>
 
                     <br/>
 
