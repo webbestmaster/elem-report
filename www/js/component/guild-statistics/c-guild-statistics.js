@@ -27,7 +27,7 @@ type PropsType = {|
 |};
 
 type StateType = {|
-    +wrapperRef: {current: HTMLElement | null},
+    +wrapperRef: { current: HTMLElement | null },
     +fullFightCount: number,
     +bbCode: string,
 |};
@@ -61,7 +61,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
         this.setState({bbCode: currentBbCode});
     }
 
-    getReport(): {|+before: ReportDataType, +after: ReportDataType|} {
+    getReport(): {| +before: ReportDataType, +after: ReportDataType |} {
         const {props} = this;
         const {report} = props;
         const {before, after} = report;
@@ -172,7 +172,7 @@ export class GuildStatistics extends Component<PropsType, StateType> {
 
         return (
             <>
-                <span>&nbsp;Кол-во боёв:&nbsp;</span>
+                <span> Кол-во боёв: </span>
                 <input
                     className={guildStatisticsStyle.guild_statistics__input}
                     defaultValue={6}

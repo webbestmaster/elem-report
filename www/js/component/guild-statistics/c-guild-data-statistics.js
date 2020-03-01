@@ -67,7 +67,7 @@ export class GuildDataStatistics extends Component<PropsType, StateType> {
             <>
                 {/* <img alt="" src={siteLinkPrefix + guildData.logoSrc} width="14"/>*/}
                 {this.renderName()}
-                <FontColorText>&nbsp;&mdash;&nbsp;</FontColorText>
+                <FontColorText> &mdash; </FontColorText>
                 {this.renderDeckValue(getAverageDeckValue(guildBefore.report), getAverageDeckValue(guildAfter.report))}
                 <br/>
             </>
